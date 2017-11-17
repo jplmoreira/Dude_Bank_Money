@@ -1,12 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DudeBank&Money.Plugins", "DudeBank&Money.Plugins.csproj", "{A5CD9C26-3F96-EF7F-01C2-55AADB444EE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DudeBank&Money.Editor.Plugins", "DudeBank&Money.Editor.Plugins.csproj", "{EFAC1177-513A-D749-457B-53D2DB847B9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5CD9C26-3F96-EF7F-01C2-55AADB444EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5CD9C26-3F96-EF7F-01C2-55AADB444EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5CD9C26-3F96-EF7F-01C2-55AADB444EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5CD9C26-3F96-EF7F-01C2-55AADB444EE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFAC1177-513A-D749-457B-53D2DB847B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFAC1177-513A-D749-457B-53D2DB847B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFAC1177-513A-D749-457B-53D2DB847B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFAC1177-513A-D749-457B-53D2DB847B9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
