@@ -22,10 +22,26 @@ public class PlayerScript : MonoBehaviour {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             for (int i=0; i < enemies.Length; i++) {
                 EnemyAI enemy = enemies[i].GetComponent<EnemyAI>();
-                if (enemy.speed == 0)
-                    enemy.speed = 600;
-                else
+                if (enemy.speed != 0)
                     enemy.speed = 0;
+                else
+                    enemy.speed = 600;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            transform.GetComponent<Countdown>().timeStop = false;
+            float timeRate = transform.GetComponent<Countdown>().timeRate;
+            if (timeRate == 1)
+                transform.GetComponent<Countdown>().timeRate = 10f;
+            else
+                transform.GetComponent<Countdown>().timeRate = 1f;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            for (int i = 0; i < enemies.Length; i++) {
+                EnemyAI enemy = enemies[i].GetComponent<EnemyAI>();
+                if (enemy.speed != 300)
+                    enemy.speed = 300;
+                else
+                    enemy.speed = 600;
             }
         }
     }

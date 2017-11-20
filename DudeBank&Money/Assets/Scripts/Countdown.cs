@@ -11,11 +11,12 @@ public class Countdown : MonoBehaviour {
     }
 
     public bool timeStop = false;
+    public float timeRate = 1f;
 
     // Update is called once per frame
     void Update () {
         if (!timeStop) {
-            timeLeft -= Time.deltaTime;
+            timeLeft -= Time.deltaTime/timeRate;
 
             if (timeLeft < 0) {
                 transform.GetComponent<PlayerScript>().DamagePlayer();
