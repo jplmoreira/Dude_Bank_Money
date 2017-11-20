@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour {
 
@@ -15,14 +16,14 @@ public class GameMaster : MonoBehaviour {
     public Transform player;
     public Transform spawnPoint;
 
-    public IEnumerator RespawnPlayer() {
+    public IEnumerator RestartGame() {
         yield return new WaitForSeconds(2);
-        Instantiate(player, spawnPoint.position, spawnPoint.rotation);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public static void KillPlayer(PlayerScript player) {
         Destroy(player.gameObject);
-        gm.StartCoroutine(gm.RespawnPlayer());
+        gm.StartCoroutine(gm.RestartGame());
     }
 
     public static void KillEnemy(EnemyScript enemy) {

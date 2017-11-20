@@ -80,5 +80,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea20137da572144ea033bdff1276a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4248813669925550, guid: 1334146db7d8e9445a9aee46ceff153e, type: 2}
+  player: {fileID: 4671143579612400, guid: 015e98066e3eb8b45b5f4c81c2d0a32a, type: 2}
   spawnPoint: {fileID: 4839796874251514}

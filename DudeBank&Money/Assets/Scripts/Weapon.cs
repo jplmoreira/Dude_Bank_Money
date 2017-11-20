@@ -5,10 +5,15 @@ using UnityEngine;
 public class Weapon : MonoBehaviour {
 
     public int damage = 1;
+    public int numBullets = 6;
     public LayerMask hittable;
     public Transform bulletTrail;
     public Transform muzzleFlash;
     public Transform hitParticle;
+
+    public int Bullets {
+        get { return numBullets;  }
+    }
 
     Transform barrel;
 
@@ -28,27 +33,30 @@ public class Weapon : MonoBehaviour {
 	}
 
     void Shoot() {
-        Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, 
+        if (numBullets > 0) {
+            numBullets--;
+            Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
                                             Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-        Vector2 barrelPosition = new Vector2(barrel.position.x, barrel.position.y);
-        RaycastHit2D hit = Physics2D.Raycast(barrelPosition, mousePosition - barrelPosition, 100, hittable);
-        Debug.DrawLine(barrelPosition, (mousePosition-barrelPosition)*100);
-        if (hit.collider != null) {
-            Debug.DrawLine(barrelPosition, hit.point, Color.red);
-            EnemyScript enemy = hit.collider.GetComponent<EnemyScript>();
-            if (enemy != null)
-                enemy.DamageEnemy(damage);
+            Vector2 barrelPosition = new Vector2(barrel.position.x, barrel.position.y);
+            RaycastHit2D hit = Physics2D.Raycast(barrelPosition, mousePosition - barrelPosition, 100, hittable);
+            Debug.DrawLine(barrelPosition, (mousePosition - barrelPosition) * 100);
+            if (hit.collider != null) {
+                Debug.DrawLine(barrelPosition, hit.point, Color.red);
+                EnemyScript enemy = hit.collider.GetComponent<EnemyScript>();
+                if (enemy != null)
+                    enemy.DamageEnemy(damage);
+            }
+            Vector3 hitPos;
+            Vector3 hitNormal;
+            if (hit.collider == null) {
+                hitPos = (mousePosition - barrelPosition) * 30;
+                hitNormal = new Vector3(9999, 9999, 9999);
+            } else {
+                hitPos = hit.point;
+                hitNormal = hit.normal;
+            }
+            Effect(hitPos, hitNormal);
         }
-        Vector3 hitPos;
-        Vector3 hitNormal;
-        if (hit.collider == null) {
-            hitPos = (mousePosition - barrelPosition) * 30;
-            hitNormal = new Vector3(9999, 9999, 9999);
-        } else {
-            hitPos = hit.point;
-            hitNormal = hit.normal;
-        }
-        Effect(hitPos, hitNormal);
     }
 
     void Effect(Vector3 hitPos, Vector3 hitNormal) {

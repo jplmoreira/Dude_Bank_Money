@@ -228,6 +228,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Countdown.cs" />
     <Compile Include="Assets\Scripts\ArmRotation.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Assets\Scripts\MoveTrail.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
+    <Compile Include="Assets\UIScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Additional Assets\2d-mega-pack\README.txt" />
