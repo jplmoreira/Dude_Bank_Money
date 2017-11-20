@@ -17,6 +17,17 @@ public class PlayerScript : MonoBehaviour {
             DamagePlayer();
         if (Input.GetKeyDown(KeyCode.R))
             DamagePlayer();
+        if (Input.GetKeyDown(KeyCode.E)) {
+            transform.GetComponent<Countdown>().timeStop = !transform.GetComponent<Countdown>().timeStop;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            for (int i=0; i < enemies.Length; i++) {
+                EnemyAI enemy = enemies[i].GetComponent<EnemyAI>();
+                if (enemy.speed == 0)
+                    enemy.speed = 600;
+                else
+                    enemy.speed = 0;
+            }
+        }
     }
 
     public void DamagePlayer() {
