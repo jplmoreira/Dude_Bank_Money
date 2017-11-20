@@ -13,7 +13,7 @@ public class PlayerScript : MonoBehaviour {
     public int fallBoundary = -10;
 
     private void Update() {
-        if (transform.position.y <= fallBoundary)
+        if (transform.position.y <= fallBoundary || transform.position.x >= 39)
             DamagePlayer();
     }
 
