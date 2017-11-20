@@ -15,6 +15,8 @@ public class PlayerScript : MonoBehaviour {
     private void Update() {
         if (transform.position.y <= fallBoundary || transform.position.x >= 39)
             DamagePlayer();
+        if (Input.GetKeyDown(KeyCode.R))
+            DamagePlayer();
     }
 
     public void DamagePlayer() {
