@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R))
             DamagePlayer();
         if (Input.GetKeyDown(KeyCode.E)) {
+            transform.GetComponent<Countdown>().timeRate = 1f;
             transform.GetComponent<Countdown>().timeStop = !transform.GetComponent<Countdown>().timeStop;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             for (int i=0; i < enemies.Length; i++) {
