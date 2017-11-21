@@ -14,7 +14,7 @@
  - Enemies get alerted when player enters their cone of vision and is in a restricted area or enters the vault
  - The enemy that spots the player tries to shoot the player immediatly
  - Reaction time is different according to their state (Allerting, aiming and shooting)
- - 2 tipes of enemies: patrolling and guards
+ - 2 types of enemies: patrolling and guards
  - Guards stand still on the guns blazing path
  - Patrolling enemies patrol the restricted areas of the stealth path
  - When alerted the guards turn towards the vault and the patrolling enemies try to find the player
