@@ -12,13 +12,20 @@ public class UIScript : MonoBehaviour {
     Countdown countdown;
 
     [SerializeField]
+    PlayerScript player;
+
+    [SerializeField]
     Text bulletCounter;
 
     [SerializeField]
     Text timeCounter;
 
+    [SerializeField]
+    Text resourceCounter;
+
     private int numBullets;
     private float timeVal;
+    private float resourceVal;
 
 	// Use this for initialization
 	void Start () {
@@ -28,8 +35,10 @@ public class UIScript : MonoBehaviour {
         }
         numBullets = weapon.Bullets;
         timeVal = countdown.Counter;
+        resourceVal = player.Resource;
         bulletCounter.text = "Bullets: " + numBullets;
         timeCounter.text = timeVal.ToString("0.00") + "s";
+        resourceCounter.text = "Resource: " + resourceVal.ToString("0");
 	}
 
     // Update is called once per frame
@@ -40,6 +49,9 @@ public class UIScript : MonoBehaviour {
         }
         timeVal = countdown.Counter;
         timeVal = System.Math.Max(timeVal, 0f);
+        resourceVal = player.Resource;
+        resourceVal = System.Math.Max(resourceVal, 0f);
         timeCounter.text = timeVal.ToString("0.00") + "s";
+        resourceCounter.text = "Resource: " + resourceVal.ToString("0");
     }
 }
