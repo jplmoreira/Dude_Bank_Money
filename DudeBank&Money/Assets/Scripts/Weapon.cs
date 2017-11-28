@@ -2,7 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour {
+public class Weapon : MonoBehaviour
+{
+    /// <summary>
+    /// Bullet prefab to be instantiated.
+    /// </summary>
+    public GameObject bullet;
+    /// <summary>
+    /// The speed at which the bullet moves.
+    /// </summary>
+    public float bulletSpeed = 20.0f;
 
     public int damage = 1;
     public int numBullets = 6;
@@ -27,8 +36,10 @@ public class Weapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Fire1")) {
-            Shoot();
+        if (Input.GetButtonDown("Fire1"))
+        {
+            //Shoot();
+            Shoot2();
         }
 	}
 
@@ -56,6 +67,20 @@ public class Weapon : MonoBehaviour {
                 hitNormal = hit.normal;
             }
             Effect(hitPos, hitNormal);
+        }
+    }
+
+    void Shoot2()
+    {
+        if (numBullets > 0)
+        {
+            numBullets--;
+            Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                                            Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+            Vector2 barrelPosition = new Vector2(barrel.position.x, barrel.position.y);
+
+            GameObject aux = Instantiate(bullet, barrelPosition, Quaternion.identity);
+            aux.GetComponent<Rigidbody2D>().velocity = (mousePosition - barrelPosition) * bulletSpeed * Time.deltaTime;
         }
     }
 
