@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 4024763210963340}
   m_Layer: 0
   m_Name: GunBarrel
-  m_TagString: Untagged
+  m_TagString: GunBarrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625718850945182}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14, y: 0.07, z: 0}
+  m_LocalPosition: {x: 0.4, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4948163393083112}
@@ -181,7 +181,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4671143579612400}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4671143579612400
 Transform:
@@ -190,13 +190,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1279729126064536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1, z: 0}
+  m_LocalPosition: {x: -9.775787, y: 1.149, z: 0}
   m_LocalScale: {x: 1.7715329, y: 1.7715304, z: 1}
   m_Children:
   - {fileID: 4136570414627888}
   - {fileID: 4169124472236410}
-  - {fileID: 4417199304793604}
   - {fileID: 4895552313157172}
+  - {fileID: 4417199304793604}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -211,7 +211,7 @@ Transform:
   m_LocalScale: {x: 0.56448287, y: 0.5644837, z: 1}
   m_Children: []
   m_Father: {fileID: 4671143579612400}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4948163393083112
 Transform:
@@ -352,6 +352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23569ec2652bbfe40b4cd445a7706a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeStop: 0
+  timeRate: 1
 --- !u!114 &114651632158874002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -383,14 +385,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   numBullets: 6
-  hittable:
-    serializedVersion: 2
-    m_Bits: 4294967035
   bulletTrail: {fileID: 4632137562374844, guid: cd4d6f610c15aed48a8559a545f56f68,
     type: 2}
   muzzleFlash: {fileID: 4357321090159830, guid: 8b4f18c25f4295341b9cdca273ae4147,
-    type: 2}
-  hitParticle: {fileID: 4200762967838774, guid: 38d3b6a319bbdcf438d8eda80ef8be50,
     type: 2}
 --- !u!212 &212088878862763696
 SpriteRenderer:
