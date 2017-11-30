@@ -81,7 +81,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a7128cc22ffed419871ec06b20b0a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 1473554657578450, guid: a64e4300dafba734ab08463d3045f732, type: 2}
+  bulletSpeed: 20
   damage: 1
+  numBullets: 6
   hittable:
     serializedVersion: 2
     m_Bits: 4294967035
@@ -89,6 +92,7 @@ MonoBehaviour:
     type: 2}
   muzzleFlash: {fileID: 4357321090159830, guid: 8b4f18c25f4295341b9cdca273ae4147,
     type: 2}
+  hitParticle: {fileID: 0}
 --- !u!212 &212718910265627346
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -98,7 +102,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -114,7 +117,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
