@@ -32,7 +32,7 @@ public class Weapon : MonoBehaviour {
 
     void Shoot() {
         if (numBullets > 0) {
-            //numBullets--;
+            numBullets--;
             float rotation = transform.parent.rotation.eulerAngles.z;
             if (transform.parent.localScale.x < 0) {
                 rotation += 180;
