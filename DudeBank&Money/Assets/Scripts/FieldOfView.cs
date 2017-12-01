@@ -27,11 +27,11 @@ public class FieldOfView : MonoBehaviour {
 
     private void FindVisibleTargets() {
         visibleTargets.Clear();
-        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
+        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.parent.position, viewRadius, targetMask);
 
         for (int i = 0; i < targetsInViewRadius.Length; i++) {
             Transform target = targetsInViewRadius[i].transform;
-            Vector3 dirToTarget = (target.position - transform.position).normalized;
+            Vector3 dirToTarget = (target.position - transform.parent.position).normalized;
             if (Vector3.Angle(transform.right, dirToTarget) < viewAngle / 2) {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
