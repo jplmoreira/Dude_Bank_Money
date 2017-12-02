@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets._2D;
 
 public class PlayerScript : MonoBehaviour {
 
@@ -17,6 +18,15 @@ public class PlayerScript : MonoBehaviour {
     public float Resource {
         get { return resourceVal; }
     }
+
+    private float nextDash = 1;
+    public float dashCooldown = 2;
+    public float dashSpeed = 200;   
+    public float dashTime = 1;      
+    private bool dashing;
+
+    public PlatformerCharacter2D pc2dscript;
+    public bool right;
 
     private void Update() {
         if (transform.position.y <= fallBoundary || transform.position.x >= 39)
@@ -74,4 +84,39 @@ public class PlayerScript : MonoBehaviour {
     public void DamagePlayer() {
         GameMaster.KillPlayer(this);
     }
+
+    private void DashReset()
+    {
+        dashing = false;
+    }
+
+    private void FixedUpdate()
+    {
+        right = pc2dscript.m_FacingRight;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > nextDash)
+        {
+            dashing = true;
+            nextDash = Time.time + dashCooldown;
+            if (dashing)
+            {
+                Dash();
+                Invoke("DashReset", dashTime);
+            }
+        }
+    }
+
+    private void Dash()
+    {
+       
+        if (right)
+        {
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(dashSpeed, 0), ForceMode2D.Impulse);
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(-dashSpeed, 0), ForceMode2D.Impulse);
+        }
+    }
+
 }
