@@ -28,6 +28,13 @@ public class PlayerScript : MonoBehaviour {
     public PlatformerCharacter2D pc2dscript;
     public bool right;
 
+    public Weapon wscript;
+
+    private void Start()
+    {
+        wscript = GetComponentInChildren<Weapon>();
+    }
+
     private void Update() {
         if (transform.position.y <= fallBoundary || transform.position.x >= 39)
             DamagePlayer();
@@ -101,6 +108,7 @@ public class PlayerScript : MonoBehaviour {
             if (dashing)
             {
                 Dash();
+                wscript.ResetShot();
                 Invoke("DashReset", dashTime);
             }
         }

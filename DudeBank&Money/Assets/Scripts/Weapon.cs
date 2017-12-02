@@ -15,6 +15,9 @@ public class Weapon : MonoBehaviour {
 
     Transform barrel;
 
+    private float nextShot = 1;
+    public float shotCooldown = 2;
+
     // Use this for initialization
     void Awake() {
         barrel = transform.Find("GunBarrel");
@@ -24,8 +27,9 @@ public class Weapon : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-        if (Input.GetButtonDown("Fire1")) {
+    void FixedUpdate() {
+        if (Input.GetButtonDown("Fire1")  && Time.time > nextShot) {
+            nextShot = Time.time + shotCooldown;
             Shoot();
         }
     }
@@ -49,5 +53,10 @@ public class Weapon : MonoBehaviour {
             clone.localScale = new Vector3(size, size, 0);
             Destroy(clone.gameObject, 0.02f);
         }
+    }
+
+    public void ResetShot()
+    {
+        nextShot = 0;
     }
 }
