@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour {
     Transform barrel;
 
     private float nextShot = 1;
-    public float shotCooldown = 2;
+    public float shotCooldown = 1.5f;
 
     // Use this for initialization
     void Awake() {
