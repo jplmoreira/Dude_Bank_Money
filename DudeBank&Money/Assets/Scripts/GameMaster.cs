@@ -16,6 +16,14 @@ public class GameMaster : MonoBehaviour {
     public Transform player;
     public Transform spawnPoint;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menu 3D", LoadSceneMode.Additive);
+        }
+    }
+
     public IEnumerator RestartGame() {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
