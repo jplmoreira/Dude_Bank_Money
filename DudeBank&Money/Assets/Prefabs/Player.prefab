@@ -329,6 +329,12 @@ MonoBehaviour:
   playerStats:
     health: 1
   fallBoundary: -10
+  dashCooldown: 2
+  dashSpeed: 200
+  dashTime: 1
+  pc2dscript: {fileID: 114651632158874002}
+  right: 0
+  wscript: {fileID: 0}
 --- !u!114 &114513415857442636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -373,6 +379,7 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
+  m_FacingRight: 1
 --- !u!114 &114826535576851588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -390,6 +397,7 @@ MonoBehaviour:
     type: 2}
   muzzleFlash: {fileID: 4357321090159830, guid: 8b4f18c25f4295341b9cdca273ae4147,
     type: 2}
+  shotCooldown: 1.5
 --- !u!212 &212088878862763696
 SpriteRenderer:
   m_ObjectHideFlags: 1
