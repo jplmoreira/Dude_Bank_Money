@@ -12,7 +12,7 @@ public class Countdown : MonoBehaviour {
 
     public bool timeStop = false;
     public float timeRate = 1f;
-    public bool alarm = false;
+    public bool alarm = true;
 
     // Update is called once per frame
     void Update () {

@@ -24,7 +24,9 @@ public class PlayerScript : MonoBehaviour {
     public float dashSpeed = 200;   
     public float dashTime = 1;      
     private bool dashing;
+    
 
+    public Platformer2DUserControl playerControl;
     public PlatformerCharacter2D pc2dscript;
     public bool right;
 
@@ -46,8 +48,11 @@ public class PlayerScript : MonoBehaviour {
             if (resourceVal > 50 || transform.GetComponent<Countdown>().timeStop) {
                 transform.GetComponent<Countdown>().timeRate = 1f;
                 transform.GetComponent<Countdown>().timeStop = !transform.GetComponent<Countdown>().timeStop;
-                if (transform.GetComponent<Countdown>().timeStop)
+                pc2dscript.timeStop = transform.GetComponent<Countdown>().timeStop;
+                if (transform.GetComponent<Countdown>().timeStop){
                     resourceVal -= 50;
+                    pc2dscript.timeStopActions = 5;
+                }
                 GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
                 for (int i = 0; i < enemies.Length; i++) {
                     EnemyAI enemy = enemies[i].GetComponent<EnemyAI>();
@@ -61,6 +66,8 @@ public class PlayerScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Q)) {
             if (resourceVal > 0 || transform.GetComponent<Countdown>().timeRate > 1) {
                 transform.GetComponent<Countdown>().timeStop = false;
+                pc2dscript.timeStop = false;
+                pc2dscript.timeStopActions = 0;
                 float timeRate = transform.GetComponent<Countdown>().timeRate;
                 if (timeRate == 1)
                     transform.GetComponent<Countdown>().timeRate = 10f;
@@ -76,8 +83,10 @@ public class PlayerScript : MonoBehaviour {
                 }
             }
         }
+
         if (!reset && resourceVal <= 0) {
             transform.GetComponent<Countdown>().timeStop = false;
+            pc2dscript.timeStop = false;
             transform.GetComponent<Countdown>().timeRate = 1f;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             for (int i = 0; i < enemies.Length; i++) {
@@ -101,15 +110,30 @@ public class PlayerScript : MonoBehaviour {
     {
         right = pc2dscript.m_FacingRight;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > nextDash)
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            dashing = true;
-            nextDash = Time.time + dashCooldown;
-            if (dashing)
+            if (transform.GetComponent<Countdown>().timeStop && pc2dscript.timeStopActions > 0)
             {
-                Dash();
-                wscript.ResetShot();
-                Invoke("DashReset", dashTime);
+                pc2dscript.timeStopActions--;
+                dashing = true;
+                nextDash = Time.time + dashCooldown;
+                if (dashing)
+                {
+                    Dash();
+                    wscript.ResetShot();
+                    Invoke("DashReset", dashTime);
+                }
+            }
+            else if (!transform.GetComponent<Countdown>().timeStop && Time.time > nextDash)
+            {
+                dashing = true;
+                nextDash = Time.time + dashCooldown;
+                if (dashing)
+                {
+                    Dash();
+                    wscript.ResetShot();
+                    Invoke("DashReset", dashTime);
+                }
             }
         }
     }

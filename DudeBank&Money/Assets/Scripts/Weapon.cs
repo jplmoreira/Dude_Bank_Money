@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets._2D;
 
 public class Weapon : MonoBehaviour {
 
@@ -8,6 +9,10 @@ public class Weapon : MonoBehaviour {
     public int numBullets = 6;
     public Transform bulletTrail;
     public Transform muzzleFlash;
+
+    public PlayerScript player;
+    public Countdown countdown;
+    public PlatformerCharacter2D pc2dscript;
 
     public int Bullets {
         get { return numBullets; }
@@ -20,6 +25,9 @@ public class Weapon : MonoBehaviour {
 
     // Use this for initialization
     void Awake() {
+        player = GameObject.Find("Player").GetComponent<PlayerScript>();
+        pc2dscript = player.pc2dscript;
+        countdown = GameObject.Find("Player").GetComponent<Countdown>();
         barrel = transform.Find("GunBarrel");
         if (barrel == null) {
             Debug.LogError("GunBarrel not found.");
@@ -28,9 +36,18 @@ public class Weapon : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate() {
-        if (Input.GetButtonDown("Fire1")  && Time.time > nextShot) {
-            nextShot = Time.time + shotCooldown;
-            Shoot();
+        if (Input.GetButtonDown("Fire1")) {
+            if (countdown.timeStop && pc2dscript.timeStopActions > 0)
+            {
+                pc2dscript.timeStopActions--;
+                nextShot = Time.time + shotCooldown;
+                Shoot();
+            }
+            else if (!countdown.timeStop && Time.time > nextShot)
+            {
+                nextShot = Time.time + shotCooldown;
+                Shoot();
+            }
         }
     }
 
