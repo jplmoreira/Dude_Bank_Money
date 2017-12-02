@@ -12,10 +12,11 @@ public class Countdown : MonoBehaviour {
 
     public bool timeStop = false;
     public float timeRate = 1f;
+    public bool alarm = false;
 
     // Update is called once per frame
     void Update () {
-        if (!timeStop) {
+        if (!timeStop && alarm) {
             timeLeft -= Time.deltaTime/timeRate;
 
             if (timeLeft < 0) {
@@ -23,4 +24,8 @@ public class Countdown : MonoBehaviour {
             }
         }
 	}
+
+    public void SoundAlarm() {
+        alarm = true;
+    }
 }

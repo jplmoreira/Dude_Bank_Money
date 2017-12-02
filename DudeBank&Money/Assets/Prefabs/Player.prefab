@@ -354,6 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeStop: 0
   timeRate: 1
+  alarm: 0
 --- !u!114 &114651632158874002
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,11 +10,18 @@ public class FieldOfView : MonoBehaviour {
 
     public LayerMask targetMask;
     public LayerMask obstacleMask;
+    public Transform bulletTrail;
 
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
 
+    private Transform barrel;
+    private bool alreadyShot = false;
+    private Countdown cd;
+
     private void Start() {
+        barrel = transform.parent.Find("GunBarrel");
+        cd = GameObject.Find("Player").GetComponent<Countdown>();
         StartCoroutine("FindTargetsWithDelay", 0.2f);
     }
 
@@ -23,6 +30,21 @@ public class FieldOfView : MonoBehaviour {
             yield return new WaitForSeconds(delay);
             FindVisibleTargets();
         }
+    }
+
+    private IEnumerator SoundAlarm(float delay) {
+        yield return new WaitForSeconds(delay);
+        cd.SoundAlarm();
+    }
+
+    private IEnumerator AimAt(Transform target) {
+        yield return new WaitForSeconds(0.5f);
+        Vector3 dir = (target.position - barrel.position);
+        Transform clone = (Transform)Instantiate(bulletTrail, barrel.position, Quaternion.FromToRotation(Vector3.right, dir));
+        clone.GetComponent<MoveTrail>().Shoot(dir.normalized);
+        StartCoroutine("SoundAlarm", 5f);
+        yield return new WaitForSeconds(3f);
+        alreadyShot = false;
     }
 
     private void FindVisibleTargets() {
@@ -37,6 +59,10 @@ public class FieldOfView : MonoBehaviour {
 
                 if (!Physics2D.Raycast(transform.position, dirToTarget, distanceToTarget, obstacleMask)) {
                     visibleTargets.Add(target);
+                }
+                if (visibleTargets.Count > 0 && !alreadyShot) {
+                    alreadyShot = true;
+                    StartCoroutine("AimAt", visibleTargets[0]);
                 }
             }
         }
