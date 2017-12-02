@@ -31,7 +31,9 @@ public class GameMaster : MonoBehaviour {
 
     public static void KillPlayer(PlayerScript player) {
         Destroy(player.gameObject);
-        gm.StartCoroutine(gm.RestartGame());
+        //gm.StartCoroutine(gm.RestartGame());
+        SceneManager.LoadScene("Menu 3D");
+        SceneManager.UnloadSceneAsync("Prototype");
     }
 
     public static void KillEnemy(EnemyScript enemy) {
