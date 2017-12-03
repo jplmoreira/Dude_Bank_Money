@@ -7,14 +7,22 @@ public class MoveTrail : MonoBehaviour {
     public int bulletSpeed = 10;
     public Transform hitParticle;
 
+    private PlayerScript player;
     private Rigidbody2D rigidBody;
+    private float velocityX;
+    private float velocityY;
 
     private void Awake() {
         rigidBody = GetComponent<Rigidbody2D>();
+        velocityX = 0;
+        velocityY = 0;
+        player = GameObject.Find("Player").GetComponent<PlayerScript>();
     }
 
     public void Shoot(Vector3 dir) {
         rigidBody.AddForce(dir * bulletSpeed, ForceMode2D.Impulse);
+        velocityX = rigidBody.velocity.x;
+        velocityY = rigidBody.velocity.y;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -38,5 +46,9 @@ public class MoveTrail : MonoBehaviour {
         Destroy(gameObject);
         Transform particle = Instantiate(hitParticle, contact.point, Quaternion.FromToRotation(Vector3.right, contact.normal));
         Destroy(particle.gameObject, 1f);
+    }
+
+    private void FixedUpdate() {
+        rigidBody.velocity = new Vector2(velocityX * player.slowFactor, velocityY * player.slowFactor);
     }
 }

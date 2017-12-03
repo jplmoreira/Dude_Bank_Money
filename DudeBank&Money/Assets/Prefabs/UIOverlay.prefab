@@ -130,8 +130,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
   countdown: {fileID: 0}
+  player: {fileID: 0}
   bulletCounter: {fileID: 114092694407193672}
   timeCounter: {fileID: 114655114852061074}
+  resourceCounter: {fileID: 114585752484965546}
 --- !u!114 &114585752484965546
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -37,13 +37,13 @@ public class Weapon : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate() {
         if (Input.GetButtonDown("Fire1")) {
-            if (countdown.timeStop && pc2dscript.timeStopActions > 0)
+            if (pc2dscript.timeStop && pc2dscript.timeStopActions > 0)
             {
                 pc2dscript.timeStopActions--;
                 nextShot = Time.time + shotCooldown;
                 Shoot();
             }
-            else if (!countdown.timeStop && Time.time > nextShot)
+            else if (!pc2dscript.timeStop && Time.time > nextShot)
             {
                 nextShot = Time.time + shotCooldown;
                 Shoot();

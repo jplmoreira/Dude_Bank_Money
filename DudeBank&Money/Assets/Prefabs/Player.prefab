@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 212618496817793714}
   - component: {fileID: 114179589714477164}
   - component: {fileID: 114641081307393798}
+  - component: {fileID: 114607776211360552}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -326,12 +327,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f0e950f67d4fb4182e94ef439ebbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats:
-    health: 1
-  fallBoundary: -10
   dashCooldown: 2
   dashSpeed: 200
   dashTime: 1
+  fallBoundary: -10
+  slowFactor: 1
   pc2dscript: {fileID: 114651632158874002}
   right: 0
   wscript: {fileID: 0}
@@ -347,6 +347,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationOffset: 0
+--- !u!114 &114607776211360552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279729126064536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01a58757763ed941b7180f64463a04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charStats:
+    health: 1
 --- !u!114 &114641081307393798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -358,8 +371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23569ec2652bbfe40b4cd445a7706a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeStop: 0
-  timeRate: 1
   alarm: 0
 --- !u!114 &114651632158874002
 MonoBehaviour:
@@ -380,6 +391,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_FacingRight: 1
+  currSpeed: 0
+  timeStop: 0
+  timeStopActions: 0
+  timeReset: 0
 --- !u!114 &114826535576851588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -397,6 +412,9 @@ MonoBehaviour:
     type: 2}
   muzzleFlash: {fileID: 4357321090159830, guid: 8b4f18c25f4295341b9cdca273ae4147,
     type: 2}
+  player: {fileID: 0}
+  countdown: {fileID: 0}
+  pc2dscript: {fileID: 0}
   shotCooldown: 1.5
 --- !u!212 &212088878862763696
 SpriteRenderer:

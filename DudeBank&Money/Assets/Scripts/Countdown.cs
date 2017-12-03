@@ -10,14 +10,21 @@ public class Countdown : MonoBehaviour {
         get { return timeLeft;  }
     }
 
-    public bool timeStop = false;
-    public float timeRate = 1f;
     public bool alarm = true;
+
+    private PlayerScript player;
+
+    private void Awake() {
+        GameObject obj = GameObject.Find("Player");
+        player = obj.GetComponent<PlayerScript>();
+        if (player == null)
+            Debug.LogError("Could not find player");
+    }
 
     // Update is called once per frame
     void Update () {
-        if (!timeStop && alarm) {
-            timeLeft -= Time.deltaTime/timeRate;
+        if (alarm) {
+            timeLeft -= Time.deltaTime * player.slowFactor;
 
             if (timeLeft < 0) {
                 transform.GetComponent<CharacterScript>().DamageCharacter(9999);

@@ -20,14 +20,18 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         public bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
-        public bool timeStop;
+        public float currSpeed;
+
+        public bool timeStop = false;
         public float timeStopActions;
+        public bool timeReset = false;
 
         Transform playerSprite;             // Reference to the player sprite to change direction.
 
         private void Awake()
         {
             // Setting up references.
+            currSpeed = m_MaxSpeed;
             m_GroundCheck = transform.Find("GroundCheck");
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>();
@@ -56,6 +60,14 @@ namespace UnityStandardAssets._2D
 
             // Set the vertical animation
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
+            if (m_Rigidbody2D.velocity.y < 0 && timeStop) {
+                m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
+                m_Rigidbody2D.gravityScale = 0;
+            }
+            if (timeReset) {
+                m_Rigidbody2D.gravityScale = 3;
+                timeReset = false;
+            }
         }
 
 
@@ -99,7 +111,7 @@ namespace UnityStandardAssets._2D
                 m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
                 // Move the character
-                m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
+                m_Rigidbody2D.velocity = new Vector2(move*currSpeed, m_Rigidbody2D.velocity.y);
 
                 
             }
