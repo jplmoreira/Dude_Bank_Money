@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets._2D;
 
 public class UIScript : MonoBehaviour {
 
@@ -15,6 +16,9 @@ public class UIScript : MonoBehaviour {
     PlayerScript player;
 
     [SerializeField]
+    PlatformerCharacter2D pc2dscript;
+
+    [SerializeField]
     Text bulletCounter;
 
     [SerializeField]
@@ -23,9 +27,13 @@ public class UIScript : MonoBehaviour {
     [SerializeField]
     Text resourceCounter;
 
+    [SerializeField]
+    Text timeStopActions;
+
     private int numBullets;
     private float timeVal;
     private float resourceVal;
+    private float actions;
 
 	// Use this for initialization
 	void Start () {
@@ -36,9 +44,11 @@ public class UIScript : MonoBehaviour {
         numBullets = weapon.Bullets;
         timeVal = countdown.Counter;
         resourceVal = player.Resource;
+        actions = pc2dscript.timeStopActions;
         bulletCounter.text = "Bullets: " + numBullets;
         timeCounter.text = timeVal.ToString("0.00") + "s";
         resourceCounter.text = "Resource: " + resourceVal.ToString("0");
+        //timeStopActions.text = "Actions: " + actions.ToString();
 	}
 
     // Update is called once per frame
@@ -51,7 +61,13 @@ public class UIScript : MonoBehaviour {
         timeVal = System.Math.Max(timeVal, 0f);
         resourceVal = player.Resource;
         resourceVal = System.Math.Max(resourceVal, 0f);
+        actions = pc2dscript.timeStopActions;
+        actions = System.Math.Max(actions, 0f);
         timeCounter.text = timeVal.ToString("0.00") + "s";
         resourceCounter.text = "Resource: " + resourceVal.ToString("0");
+        if (pc2dscript.timeStop){
+            timeStopActions.text = "Actions: " + actions.ToString();
+        }
+        else { timeStopActions.text = ""; }
     }
 }
