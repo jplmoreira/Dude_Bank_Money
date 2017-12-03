@@ -7,12 +7,6 @@ public class GameMaster : MonoBehaviour {
 
     public static GameMaster gm;
 
-    private void Start() {
-        if (gm == null) {
-            gm = GameObject.FindWithTag("GM").GetComponent<GameMaster>();
-        }
-    }
-
     public IEnumerator RestartGame() {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -24,11 +18,22 @@ public class GameMaster : MonoBehaviour {
 
     public static void KillCharacter(CharacterScript character) {
         Destroy(character.gameObject);
+        SceneManager.LoadScene("Menu 3D");
+        SceneManager.UnloadSceneAsync("Prototype");
+    }
+
+    private void Start() {
+        if (gm == null) {
+            gm = GameObject.FindWithTag("GM").GetComponent<GameMaster>();
+        }
     }
 
     private void Update() {
         GameObject player = GameObject.FindWithTag("Player");
         if (player == null)
             gm.StartCoroutine(gm.RestartGame());
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene("Menu 3D", LoadSceneMode.Additive);
+        }
     }
 }
