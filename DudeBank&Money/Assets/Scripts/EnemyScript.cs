@@ -10,8 +10,13 @@ public class EnemyScript : MonoBehaviour {
     }
 
     public EnemyStats enemyStats = new EnemyStats();
-
     public bool facingRight = true;
+
+    private FieldOfView fov;
+
+    private void Awake() {
+        fov = transform.Find("Eyes").gameObject.GetComponent<FieldOfView>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.collider.tag == "Player") {
@@ -28,5 +33,10 @@ public class EnemyScript : MonoBehaviour {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    public void Alarmed() {
+        fov.viewAngle = 360;
+        fov.reactionTime = 2;
     }
 }

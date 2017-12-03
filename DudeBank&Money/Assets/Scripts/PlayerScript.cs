@@ -73,7 +73,6 @@ public class PlayerScript : MonoBehaviour {
         if (!reset && resourceVal <= 0 && slowFactor > 0) {
             pc2dscript.timeStop = false;
             slowFactor = 1f;
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             reset = true;
         }
     }

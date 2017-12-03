@@ -17,8 +17,6 @@ public class Countdown : MonoBehaviour {
     private void Awake() {
         GameObject obj = GameObject.Find("Player");
         player = obj.GetComponent<PlayerScript>();
-        if (player == null)
-            Debug.LogError("Could not find player");
     }
 
     // Update is called once per frame
@@ -34,5 +32,8 @@ public class Countdown : MonoBehaviour {
 
     public void SoundAlarm() {
         alarm = true;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemies.Length; i++)
+            enemies[i].GetComponent<EnemyScript>().Alarmed();
     }
 }
