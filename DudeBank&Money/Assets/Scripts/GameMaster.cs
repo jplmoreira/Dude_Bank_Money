@@ -13,20 +13,18 @@ public class GameMaster : MonoBehaviour {
         }
     }
 
-    public Transform player;
-    public Transform spawnPoint;
-
     public IEnumerator RestartGame() {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public static void KillPlayer(PlayerScript player) {
-        Destroy(player.gameObject);
-        gm.StartCoroutine(gm.RestartGame());
+    public static void KillCharacter(CharacterScript character) {
+        Destroy(character.gameObject);
     }
 
-    public static void KillEnemy(EnemyScript enemy) {
-        Destroy(enemy.gameObject);
+    private void Update() {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player == null)
+            gm.StartCoroutine(gm.RestartGame());
     }
 }

@@ -5,14 +5,7 @@ using UnityStandardAssets._2D;
 
 public class PlayerScript : MonoBehaviour {
 
-    [System.Serializable]
-    public class PlayerStats {
-        public int health = 1;
-    }
-
-    public PlayerStats playerStats = new PlayerStats();
-    public int fallBoundary = -10;
-
+    private CharacterScript character;
     private bool reset = false;
     private float resourceVal = 100f;
     public float Resource {
@@ -24,26 +17,30 @@ public class PlayerScript : MonoBehaviour {
     public float dashSpeed = 200;   
     public float dashTime = 1;      
     private bool dashing;
-    
+    public int fallBoundary = -10;
 
     public Platformer2DUserControl playerControl;
     public PlatformerCharacter2D pc2dscript;
     public bool right;
 
+    [HideInInspector]
     public Weapon wscript;
 
     private void Start()
     {
         wscript = GetComponentInChildren<Weapon>();
+        character = GetComponent<CharacterScript>();
+        if (character == null)
+            Debug.LogError("Could not find stats");
     }
 
     private void Update() {
         if (transform.position.y <= fallBoundary || transform.position.x >= 39)
-            DamagePlayer();
+            character.DamageCharacter(9999);
         if (transform.GetComponent<Countdown>().timeRate > 1)
             resourceVal -= Time.deltaTime * 10;
         if (Input.GetKeyDown(KeyCode.R))
-            DamagePlayer();
+            character.DamageCharacter(9999);
         if (Input.GetKeyDown(KeyCode.E)) {
             if (resourceVal > 50 || transform.GetComponent<Countdown>().timeStop) {
                 transform.GetComponent<Countdown>().timeRate = 1f;
@@ -95,10 +92,6 @@ public class PlayerScript : MonoBehaviour {
             }
             reset = true;
         }
-    }
-
-    public void DamagePlayer() {
-        GameMaster.KillPlayer(this);
     }
 
     private void DashReset()

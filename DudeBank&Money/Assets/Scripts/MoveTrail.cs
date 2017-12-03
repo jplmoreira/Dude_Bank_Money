@@ -22,9 +22,9 @@ public class MoveTrail : MonoBehaviour {
         if (collision.contacts.Length > 0) {
             ContactPoint2D contact = collision.contacts[0];
             GameObject colliderObject = collision.collider.gameObject;
-            if (colliderObject.tag == "Enemy") {
-                EnemyScript enemy = colliderObject.GetComponent<EnemyScript>();
-                enemy.DamageEnemy(1);
+            if (colliderObject.tag == "Enemy" || colliderObject.tag == "Player") {
+                CharacterScript character = colliderObject.GetComponent<CharacterScript>();
+                character.DamageCharacter(1);
             }
             Transform particle = Instantiate(hitParticle, contact.point, Quaternion.FromToRotation(Vector3.right, contact.normal));
             Destroy(particle.gameObject, 1f);

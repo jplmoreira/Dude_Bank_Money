@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 61693472570663856}
   - component: {fileID: 50610015104361754}
   - component: {fileID: 114057448810082706}
+  - component: {fileID: 114599337535727848}
   m_Layer: 0
   m_Name: Patrol
   m_TagString: Untagged
@@ -176,6 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats:
     health: 1
+  facingRight: 1
 --- !u!114 &114196371482879320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,6 +200,19 @@ MonoBehaviour:
   bulletTrail: {fileID: 4632137562374844, guid: cd4d6f610c15aed48a8559a545f56f68,
     type: 2}
   visibleTargets: []
+--- !u!114 &114599337535727848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1173740637233278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01a58757763ed941b7180f64463a04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charStats:
+    health: 1
 --- !u!212 &212983266788855618
 SpriteRenderer:
   m_ObjectHideFlags: 1

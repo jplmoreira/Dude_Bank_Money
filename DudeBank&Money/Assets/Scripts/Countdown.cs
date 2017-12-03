@@ -20,7 +20,7 @@ public class Countdown : MonoBehaviour {
             timeLeft -= Time.deltaTime/timeRate;
 
             if (timeLeft < 0) {
-                transform.GetComponent<PlayerScript>().DamagePlayer();
+                transform.GetComponent<CharacterScript>().DamageCharacter(9999);
             }
         }
 	}

@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 61258259345936186}
   - component: {fileID: 50687030943808000}
   - component: {fileID: 114939747822351820}
+  - component: {fileID: 114556782219883086}
   m_Layer: 11
   m_Name: Guard
   m_TagString: Enemy
@@ -185,6 +186,19 @@ MonoBehaviour:
   bulletTrail: {fileID: 4632137562374844, guid: cd4d6f610c15aed48a8559a545f56f68,
     type: 2}
   visibleTargets: []
+--- !u!114 &114556782219883086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1719244711849840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01a58757763ed941b7180f64463a04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charStats:
+    health: 1
 --- !u!114 &114939747822351820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats:
     health: 1
+  facingRight: 1
 --- !u!212 &212108337658321754
 SpriteRenderer:
   m_ObjectHideFlags: 1

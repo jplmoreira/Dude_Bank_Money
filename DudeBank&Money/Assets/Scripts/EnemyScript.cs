@@ -11,18 +11,12 @@ public class EnemyScript : MonoBehaviour {
 
     public EnemyStats enemyStats = new EnemyStats();
 
-    private bool facingRight = true;
-
-    public void DamageEnemy(int amount) {
-        enemyStats.health -= amount;
-        if (enemyStats.health <= 0) 
-            GameMaster.KillEnemy(this);
-    }
+    public bool facingRight = true;
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        PlayerScript player = collision.collider.GetComponent<PlayerScript>();
-        if (player != null) {
-            player.DamagePlayer();
+        if (collision.collider.tag == "Player") {
+            CharacterScript player = collision.collider.GetComponent<CharacterScript>();
+            player.DamageCharacter(9999);
         }
     }
 
