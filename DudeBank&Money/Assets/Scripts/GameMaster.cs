@@ -25,15 +25,17 @@ public class GameMaster : MonoBehaviour {
     }
 
     public IEnumerator RestartGame() {
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Menu 3D");
+        SceneManager.UnloadSceneAsync("GameOver");
+        SceneManager.UnloadSceneAsync("Prototype");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public static void KillPlayer(PlayerScript player) {
         Destroy(player.gameObject);
-        //gm.StartCoroutine(gm.RestartGame());
-        SceneManager.LoadScene("Menu 3D");
-        SceneManager.UnloadSceneAsync("Prototype");
+        SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+        gm.StartCoroutine(gm.RestartGame());
     }
 
     public static void KillEnemy(EnemyScript enemy) {

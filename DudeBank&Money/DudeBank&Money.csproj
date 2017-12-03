@@ -88,28 +88,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Bullet.cs" />
-    <Compile Include="Assets\Scripts\ActiveStateToggler.cs" />
-    <Compile Include="Assets\Scripts\ApplicationManager.cs" />
     <Compile Include="Assets\Scripts\ArmRotation.cs" />
-    <Compile Include="Assets\Scripts\ChangeColor.cs" />
-    <Compile Include="Assets\Scripts\ContinueGame.cs" />
     <Compile Include="Assets\Scripts\Countdown.cs" />
-    <Compile Include="Assets\Scripts\DragMe.cs" />
-    <Compile Include="Assets\Scripts\DragPanel.cs" />
-    <Compile Include="Assets\Scripts\DropMe.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
-    <Compile Include="Assets\Scripts\FieldOfView.cs" />
     <Compile Include="Assets\Scripts\GameMaster.cs" />
     <Compile Include="Assets\Scripts\JumpPlatform.cs" />
-    <Compile Include="Assets\Scripts\LoadSceneOnClick.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\ActiveStateToggler.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\ApplicationManager.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\ChangeColor.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\ContinueGame.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\DragMe.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\DragPanel.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\DropMe.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\FieldOfView.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\LoadSceneOnClick.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\PanelManager.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\ResizePanel.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\ScrollDetailTexture.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\ShowSliderValue.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\TiltWindow.cs" />
     <Compile Include="Assets\Scripts\MoveTrail.cs" />
-    <Compile Include="Assets\Scripts\PanelManager.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
-    <Compile Include="Assets\Scripts\ResizePanel.cs" />
-    <Compile Include="Assets\Scripts\ScrollDetailTexture.cs" />
-    <Compile Include="Assets\Scripts\ShowSliderValue.cs" />
-    <Compile Include="Assets\Scripts\TiltWindow.cs" />
     <Compile Include="Assets\Scripts\UIScript.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
   </ItemGroup>
