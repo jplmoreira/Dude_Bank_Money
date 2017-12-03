@@ -11,6 +11,8 @@ public class EnemyScript : MonoBehaviour {
 
     public EnemyStats enemyStats = new EnemyStats();
 
+    private bool facingRight = true;
+
     public void DamageEnemy(int amount) {
         enemyStats.health -= amount;
         if (enemyStats.health <= 0) 
@@ -22,5 +24,15 @@ public class EnemyScript : MonoBehaviour {
         if (player != null) {
             player.DamagePlayer();
         }
+    }
+
+    public void Flip() {
+        facingRight = !facingRight;
+        Transform fov = transform.Find("Eyes");
+        fov.Rotate(new Vector3(0, 0, 180));
+
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
