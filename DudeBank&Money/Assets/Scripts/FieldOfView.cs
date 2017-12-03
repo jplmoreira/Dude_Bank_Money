@@ -11,10 +11,12 @@ public class FieldOfView : MonoBehaviour {
     public LayerMask targetMask;
     public LayerMask obstacleMask;
     public Transform bulletTrail;
-    public int reactionTime;
+    public float alarmTime;
 
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
+    [HideInInspector]
+    public int reactionTime;
 
     private Transform barrel;
     private bool alreadyShot = false;
@@ -50,7 +52,7 @@ public class FieldOfView : MonoBehaviour {
         Vector3 dir = (target.position - barrel.position);
         Transform clone = (Transform)Instantiate(bulletTrail, barrel.position, Quaternion.FromToRotation(Vector3.right, dir));
         clone.GetComponent<MoveTrail>().Shoot(dir.normalized);
-        StartCoroutine("SoundAlarm", 2f / slowedReaction);
+        StartCoroutine("SoundAlarm", alarmTime / slowedReaction);
         yield return new WaitForSeconds(2f / slowedReaction / reactionTime);
         alreadyShot = false;
     }

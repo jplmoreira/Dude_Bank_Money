@@ -18,6 +18,10 @@ public class GameMaster : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public static void EndLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public static void KillCharacter(CharacterScript character) {
         Destroy(character.gameObject);
     }

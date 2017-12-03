@@ -332,6 +332,7 @@ MonoBehaviour:
   dashTime: 1
   fallBoundary: -10
   slowFactor: 1
+  robbed: 0
   pc2dscript: {fileID: 114651632158874002}
   right: 0
   wscript: {fileID: 0}

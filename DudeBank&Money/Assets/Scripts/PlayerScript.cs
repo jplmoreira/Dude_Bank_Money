@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour {
     private bool dashing;
     public int fallBoundary = -10;
     public float slowFactor = 1f;
+    public bool robbed = false;
 
     public PlatformerCharacter2D pc2dscript;
     public bool right;
@@ -35,7 +36,7 @@ public class PlayerScript : MonoBehaviour {
     }
 
     private void Update() {
-        if (transform.position.y <= fallBoundary || transform.position.x >= 39)
+        if (transform.position.y <= fallBoundary)
             character.DamageCharacter(9999);
         if (slowFactor == 0.1f)
             resourceVal -= Time.deltaTime / slowFactor;

@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114599337535727848}
   m_Layer: 0
   m_Name: Patrol
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1173740637233278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.633106, y: 1.1733794, z: 0}
+  m_LocalPosition: {x: 3.82, y: 11.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4710992130491248}
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 10
-  viewAngle: 70
+  viewAngle: 90
   targetMask:
     serializedVersion: 2
     m_Bits: 256
@@ -199,7 +199,9 @@ MonoBehaviour:
     m_Bits: 1024
   bulletTrail: {fileID: 4632137562374844, guid: cd4d6f610c15aed48a8559a545f56f68,
     type: 2}
+  alarmTime: 0
   visibleTargets: []
+  reactionTime: 0
 --- !u!114 &114599337535727848
 MonoBehaviour:
   m_ObjectHideFlags: 1
