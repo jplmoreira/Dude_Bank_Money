@@ -46,7 +46,7 @@ public class UIScript : MonoBehaviour {
         resourceVal = player.Resource;
         actions = pc2dscript.timeStopActions;
         bulletCounter.text = "Bullets: " + numBullets;
-        timeCounter.text = timeVal.ToString("0.00") + "s";
+        timeCounter.text = "";
         resourceCounter.text = "Resource: " + resourceVal.ToString("0");
         //timeStopActions.text = "Actions: " + actions.ToString();
 	}
@@ -58,12 +58,16 @@ public class UIScript : MonoBehaviour {
             bulletCounter.text = "Bullets: " + numBullets;
         }
         timeVal = countdown.Counter;
-        timeVal = System.Math.Max(timeVal, 0f);
+        if (timeVal == 10) {
+            timeCounter.text = "";
+        } else {
+            timeVal = System.Math.Max(timeVal, 0f);
+            timeCounter.text = timeVal.ToString("0.00") + "s";
+        }
         resourceVal = player.Resource;
         resourceVal = System.Math.Max(resourceVal, 0f);
         actions = pc2dscript.timeStopActions;
         actions = System.Math.Max(actions, 0f);
-        timeCounter.text = timeVal.ToString("0.00") + "s";
         resourceCounter.text = "Resource: " + resourceVal.ToString("0");
         if (pc2dscript.timeStop){
             timeStopActions.text = "Actions: " + actions.ToString();
