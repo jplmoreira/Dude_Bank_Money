@@ -8,6 +8,7 @@ public class PatrolBehaviour : MonoBehaviour
     public Vector3 currentEndPos;
     public Vector3 pos2;
     public float speedX;
+    public EnemyScript itsScript;
 
     private void Start()
     {
@@ -22,13 +23,15 @@ public class PatrolBehaviour : MonoBehaviour
         if (currentEndPos == pos2 && Vector3.Distance(transform.position, pos2) < 0.1f)
         {
             currentEndPos = pos1;
-            transform.localScale = new Vector3(-1, 1, 1);
+            itsScript.Flip();
+            //transform.localScale = new Vector3(-1, 1, 1);
             speedX *= -1;
         }
         if (currentEndPos == pos1 && Vector3.Distance(transform.position, pos1) < 0.1f)
         {
            currentEndPos = pos2;
-           transform.localScale = new Vector3(1, 1, 1);
+           itsScript.Flip();
+           //transform.localScale = new Vector3(1, 1, 1);
            speedX *= -1;
         }
         //transform.position = Vector3.Lerp(transform.position, currentEndPos, Time.deltaTime * 1.0f);
