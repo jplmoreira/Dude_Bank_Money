@@ -18,6 +18,7 @@ public class VaultScript : MonoBehaviour {
         if (collision.tag == "Player") {
             cd.SoundAlarm();
             player.robbed = true;
+
         }
     }
 

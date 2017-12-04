@@ -17,12 +17,11 @@ public class GameMaster : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Menu 3D");
-        Scene loadedScene = SceneManager.GetSceneByName("GameOver");
-        if (loadedScene != null)
+        if (SceneManager.GetSceneByName("GameOver").isLoaded)
         {
             SceneManager.UnloadSceneAsync("GameOver");
         }
-        else
+        if (SceneManager.GetSceneByName("GameWon").isLoaded)
         {
             SceneManager.UnloadSceneAsync("GameWon");
         }
@@ -55,7 +54,10 @@ public class GameMaster : MonoBehaviour
     private void Update() {
         GameObject player = GameObject.Find("Player");
         if (player == null && !gameOver) {
-            SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+            if (!SceneManager.GetSceneByName("GameWon").isLoaded)
+            {
+                SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+            }
             gm.StartCoroutine(gm.RestartGame());
             gameOver = true;
         }

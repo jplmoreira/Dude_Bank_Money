@@ -30,6 +30,10 @@ public class UIScript : MonoBehaviour {
     [SerializeField]
     Text timeStopActions;
 
+    [SerializeField]
+    Image money;
+
+
     private int numBullets;
     private float timeVal;
     private float resourceVal;
@@ -37,7 +41,7 @@ public class UIScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (weapon == null || countdown == null || bulletCounter == null || timeCounter == null) {
+        if (weapon == null || countdown == null || bulletCounter == null || timeCounter == null) {
             Debug.LogError("Missing fields");
             this.enabled = false;
         }
@@ -49,6 +53,7 @@ public class UIScript : MonoBehaviour {
         timeCounter.text = "";
         resourceCounter.text = "Resource: " + resourceVal.ToString("0");
         //timeStopActions.text = "Actions: " + actions.ToString();
+        money.enabled = false;
 	}
 
     // Update is called once per frame
@@ -73,5 +78,10 @@ public class UIScript : MonoBehaviour {
             timeStopActions.text = "Actions: " + actions.ToString();
         }
         else { timeStopActions.text = ""; }
+
+        if (player.robbed)
+        {
+            money.enabled = true;
+        }
     }
 }
