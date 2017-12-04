@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets._2D;
 
 public class GameMaster : MonoBehaviour
 {
@@ -10,12 +11,21 @@ public class GameMaster : MonoBehaviour
 
     public static GameMaster gm;
 
+    public PlatformerCharacter2D pc2dscript;
+
     public IEnumerator RestartGame()
     {
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Menu 3D");
-        SceneManager.UnloadSceneAsync("GameOver");
-        SceneManager.UnloadSceneAsync("GameWon");
+        Scene loadedScene = SceneManager.GetSceneByName("GameOver");
+        if (loadedScene != null)
+        {
+            SceneManager.UnloadSceneAsync("GameOver");
+        }
+        else
+        {
+            SceneManager.UnloadSceneAsync("GameWon");
+        }
         SceneManager.UnloadSceneAsync("Prototype");
     }
 
@@ -49,9 +59,10 @@ public class GameMaster : MonoBehaviour
             gm.StartCoroutine(gm.RestartGame());
             gameOver = true;
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.sceneCount == 1)
         {
             SceneManager.LoadScene("Menu 3D", LoadSceneMode.Additive);
+            pc2dscript.timeStop = true;
         }
     }
 }
