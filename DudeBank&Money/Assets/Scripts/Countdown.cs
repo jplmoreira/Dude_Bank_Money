@@ -10,22 +10,30 @@ public class Countdown : MonoBehaviour {
         get { return timeLeft;  }
     }
 
-    public bool timeStop = false;
-    public float timeRate = 1f;
-    public bool alarm = false;
+    public bool alarm = true;
+
+    private PlayerScript player;
+
+    private void Awake() {
+        GameObject obj = GameObject.Find("Player");
+        player = obj.GetComponent<PlayerScript>();
+    }
 
     // Update is called once per frame
     void Update () {
-        if (!timeStop && alarm) {
-            timeLeft -= Time.deltaTime/timeRate;
+        if (alarm) {
+            timeLeft -= Time.deltaTime * player.slowFactor;
 
             if (timeLeft < 0) {
-                transform.GetComponent<PlayerScript>().DamagePlayer();
+                transform.GetComponent<CharacterScript>().DamageCharacter(9999);
             }
         }
 	}
 
     public void SoundAlarm() {
         alarm = true;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemies.Length; i++)
+            enemies[i].GetComponent<EnemyScript>().Alarmed();
     }
 }

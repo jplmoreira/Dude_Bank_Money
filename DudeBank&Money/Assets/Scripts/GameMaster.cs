@@ -7,26 +7,33 @@ public class GameMaster : MonoBehaviour {
 
     public static GameMaster gm;
 
+    public IEnumerator RestartGame() {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public static void EndLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public static void KillCharacter(CharacterScript character) {
+        Destroy(character.gameObject);
+        SceneManager.LoadScene("Menu 3D");
+        SceneManager.UnloadSceneAsync("Prototype");
+    }
+
     private void Start() {
         if (gm == null) {
             gm = GameObject.FindWithTag("GM").GetComponent<GameMaster>();
         }
     }
 
-    public Transform player;
-    public Transform spawnPoint;
-
-    public IEnumerator RestartGame() {
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public static void KillPlayer(PlayerScript player) {
-        Destroy(player.gameObject);
-        gm.StartCoroutine(gm.RestartGame());
-    }
-
-    public static void KillEnemy(EnemyScript enemy) {
-        Destroy(enemy.gameObject);
+    private void Update() {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player == null)
+            gm.StartCoroutine(gm.RestartGame());
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene("Menu 3D", LoadSceneMode.Additive);
+        }
     }
 }

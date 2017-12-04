@@ -11,17 +11,25 @@ public class FieldOfView : MonoBehaviour {
     public LayerMask targetMask;
     public LayerMask obstacleMask;
     public Transform bulletTrail;
+    public float alarmTime;
 
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
+    [HideInInspector]
+    public int reactionTime;
 
     private Transform barrel;
     private bool alreadyShot = false;
     private Countdown cd;
+    private PlayerScript player;
+    private EnemyScript enemy;
 
     private void Start() {
+        reactionTime = 1;
+        enemy = transform.parent.gameObject.GetComponent<EnemyScript>();
         barrel = transform.parent.Find("GunBarrel");
         cd = GameObject.Find("Player").GetComponent<Countdown>();
+        player = GameObject.Find("Player").GetComponent<PlayerScript>();
         StartCoroutine("FindTargetsWithDelay", 0.2f);
     }
 
@@ -38,12 +46,14 @@ public class FieldOfView : MonoBehaviour {
     }
 
     private IEnumerator AimAt(Transform target) {
-        yield return new WaitForSeconds(0.5f);
+        float slowedReaction = 1f;
+        if (player.slowFactor == 0.1f) slowedReaction = 0.5f;
+        yield return new WaitForSeconds(0.5f / player.slowFactor / reactionTime);
         Vector3 dir = (target.position - barrel.position);
         Transform clone = (Transform)Instantiate(bulletTrail, barrel.position, Quaternion.FromToRotation(Vector3.right, dir));
         clone.GetComponent<MoveTrail>().Shoot(dir.normalized);
-        StartCoroutine("SoundAlarm", 5f);
-        yield return new WaitForSeconds(3f);
+        StartCoroutine("SoundAlarm", alarmTime / slowedReaction);
+        yield return new WaitForSeconds(2f / slowedReaction / reactionTime);
         alreadyShot = false;
     }
 
@@ -54,13 +64,15 @@ public class FieldOfView : MonoBehaviour {
         for (int i = 0; i < targetsInViewRadius.Length; i++) {
             Transform target = targetsInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.parent.position).normalized;
-            if (Vector3.Angle(transform.right, dirToTarget) < viewAngle / 2) {
+            float angle = Vector3.Angle(transform.right, dirToTarget);
+            if (angle < viewAngle / 2) {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics2D.Raycast(transform.position, dirToTarget, distanceToTarget, obstacleMask)) {
                     visibleTargets.Add(target);
                 }
-                if (visibleTargets.Count > 0 && !alreadyShot) {
+                if (visibleTargets.Count > 0 && !alreadyShot && player.slowFactor > 0) {
+                    if (angle >= 90) enemy.Flip();
                     alreadyShot = true;
                     StartCoroutine("AimAt", visibleTargets[0]);
                 }
