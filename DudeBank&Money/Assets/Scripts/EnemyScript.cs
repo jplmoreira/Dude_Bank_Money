@@ -29,29 +29,20 @@ public class EnemyScript : MonoBehaviour
         currentEndPos = pos2;
     }
 
-    private void Update()
-    {
-        if (currentEndPos == pos2 && Vector3.Distance(transform.position, pos2) < 0.1f)
-        {
-            currentEndPos = pos1;
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        if (currentEndPos == pos1 && Vector3.Distance(transform.position, pos1) < 0.1f)
-        {
-            currentEndPos = pos2;
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        transform.position = Vector3.Lerp(transform.position, currentEndPos, Time.deltaTime * 1.0f);
-    }
-
-    public void DamageEnemy(int amount)
-    {
-        enemyStats.health -= amount;
-        if (enemyStats.health <= 0)
-        {
-            GameMaster.KillEnemy(this);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (currentEndPos == pos2 && Vector3.Distance(transform.position, pos2) < 0.1f)
+    //    {
+    //        currentEndPos = pos1;
+    //        transform.localScale = new Vector3(-1, 1, 1);
+    //   }
+    //    if (currentEndPos == pos1 && Vector3.Distance(transform.position, pos1) < 0.1f)
+    //   {
+    //       currentEndPos = pos2;
+    //       transform.localScale = new Vector3(1, 1, 1);
+    //    }
+    //    transform.position = Vector3.Lerp(transform.position, currentEndPos, Time.deltaTime * 1.0f);
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.collider.tag == "Player") {

@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1719244711849840}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5023303, y: 6.11, z: 0}
+  m_LocalPosition: {x: -0.07695246, y: 13.010718, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4346931561943060}
@@ -84,7 +84,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508500062976366}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.179, y: 0.33, z: 0}
   m_LocalScale: {x: 0.5644829, y: 0.56448364, z: 1}
   m_Children: []
@@ -175,8 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8109d6fca428734e9091c7573dc361e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 10
-  viewAngle: 70
+  viewRadius: 12
+  viewAngle: 90
   targetMask:
     serializedVersion: 2
     m_Bits: 256
@@ -185,7 +185,7 @@ MonoBehaviour:
     m_Bits: 1024
   bulletTrail: {fileID: 4632137562374844, guid: cd4d6f610c15aed48a8559a545f56f68,
     type: 2}
-  alarmTime: 2
+  alarmTime: 0
   visibleTargets: []
   reactionTime: 0
 --- !u!114 &114556782219883086
@@ -212,6 +212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2616db3bc3e561e40a7c0d28a4ce9f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pos1: {x: 0, y: 0, z: 0}
+  currentEndPos: {x: 0, y: 0, z: 0}
+  pos2: {x: 0, y: 0, z: 0}
   enemyStats:
     health: 1
   facingRight: 1

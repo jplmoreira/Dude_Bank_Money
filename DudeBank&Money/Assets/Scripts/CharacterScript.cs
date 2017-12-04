@@ -13,6 +13,7 @@ public class CharacterScript : MonoBehaviour {
 
     public void DamageCharacter(int damage) {
         charStats.health -= damage;
-        GameMaster.KillCharacter(this);
+        if (charStats.health <= 0)
+            GameMaster.KillCharacter(this);
     }
 }

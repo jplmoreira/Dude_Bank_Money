@@ -59,6 +59,9 @@ public class PlayerScript : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Q)) {
             if (resourceVal > 0 || slowFactor == 0.1f) {
+                pc2dscript.timeStop = false;
+                pc2dscript.timeStopActions = 0;
+                pc2dscript.timeReset = true;
                 if (slowFactor == 0) slowFactor = 1;
                 if (pc2dscript.currSpeed == 15) {
                     pc2dscript.currSpeed = 5;
@@ -66,13 +69,12 @@ public class PlayerScript : MonoBehaviour {
                     pc2dscript.currSpeed = 15;
                 }
                 slowFactor = 0.1f / slowFactor;
-                pc2dscript.timeStop = false;
-                pc2dscript.timeStopActions = 0;
             }
         }
 
         if (!reset && resourceVal <= 0 && slowFactor > 0) {
             pc2dscript.timeStop = false;
+            pc2dscript.currSpeed = 15;
             slowFactor = 1f;
             reset = true;
         }

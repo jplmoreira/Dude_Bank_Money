@@ -8,18 +8,17 @@ public class GameMaster : MonoBehaviour {
     public static GameMaster gm;
 
     public IEnumerator RestartGame() {
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("Prototype");
     }
 
     public static void EndLevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Menu 3D");
+        SceneManager.UnloadSceneAsync("Prototype");
     }
 
     public static void KillCharacter(CharacterScript character) {
         Destroy(character.gameObject);
-        SceneManager.LoadScene("Menu 3D");
-        SceneManager.UnloadSceneAsync("Prototype");
     }
 
     private void Start() {
@@ -29,7 +28,7 @@ public class GameMaster : MonoBehaviour {
     }
 
     private void Update() {
-        GameObject player = GameObject.FindWithTag("Player");
+        GameObject player = GameObject.Find("Player");
         if (player == null)
             gm.StartCoroutine(gm.RestartGame());
         if (Input.GetKeyDown(KeyCode.Escape)) {

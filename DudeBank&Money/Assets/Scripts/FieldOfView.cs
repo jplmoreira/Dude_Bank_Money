@@ -48,11 +48,11 @@ public class FieldOfView : MonoBehaviour {
     private IEnumerator AimAt(Transform target) {
         float slowedReaction = 1f;
         if (player.slowFactor == 0.1f) slowedReaction = 0.5f;
+        StartCoroutine("SoundAlarm", alarmTime / slowedReaction);
         yield return new WaitForSeconds(0.5f / player.slowFactor / reactionTime);
         Vector3 dir = (target.position - barrel.position);
         Transform clone = (Transform)Instantiate(bulletTrail, barrel.position, Quaternion.FromToRotation(Vector3.right, dir));
-        clone.GetComponent<MoveTrail>().Shoot(dir.normalized);
-        StartCoroutine("SoundAlarm", alarmTime / slowedReaction);
+        clone.GetComponent<MoveTrail>().Shoot(dir.normalized);      
         yield return new WaitForSeconds(2f / slowedReaction / reactionTime);
         alreadyShot = false;
     }

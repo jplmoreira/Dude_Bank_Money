@@ -175,6 +175,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2616db3bc3e561e40a7c0d28a4ce9f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pos1: {x: 0, y: 0, z: 0}
+  currentEndPos: {x: 0, y: 0, z: 0}
+  pos2: {x: 0, y: 0, z: 0}
   enemyStats:
     health: 1
   facingRight: 1
@@ -190,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 10
-  viewAngle: 90
+  viewAngle: 70
   targetMask:
     serializedVersion: 2
     m_Bits: 256
@@ -199,7 +202,7 @@ MonoBehaviour:
     m_Bits: 1024
   bulletTrail: {fileID: 4632137562374844, guid: cd4d6f610c15aed48a8559a545f56f68,
     type: 2}
-  alarmTime: 0
+  alarmTime: 1
   visibleTargets: []
   reactionTime: 0
 --- !u!114 &114599337535727848
