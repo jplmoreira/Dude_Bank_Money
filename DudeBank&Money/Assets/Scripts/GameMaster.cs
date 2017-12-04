@@ -40,7 +40,7 @@ public class GameMaster : MonoBehaviour
 
     private void Update() {
         GameObject player = GameObject.Find("Player");
-        if (player == null || gameOver) {
+        if (player == null && !gameOver) {
             SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
             gm.StartCoroutine(gm.RestartGame());
             gameOver = true;
