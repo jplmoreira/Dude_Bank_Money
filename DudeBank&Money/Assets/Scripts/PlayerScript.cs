@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour {
             resourceVal -= Time.deltaTime / slowFactor;
 
         if (Input.GetKeyDown(KeyCode.R))
-            character.DamageCharacter(9999);
+            GameMaster.ReloadLevel();
 
         if (Input.GetKeyDown(KeyCode.E)) {
             if (resourceVal >= 50 || slowFactor == 0) {

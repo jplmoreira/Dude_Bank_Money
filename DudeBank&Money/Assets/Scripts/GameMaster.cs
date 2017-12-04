@@ -25,6 +25,10 @@ public class GameMaster : MonoBehaviour
         gm.StartCoroutine(gm.RestartGame());
     }
 
+    public static void ReloadLevel() {
+        SceneManager.LoadScene("Prototype");
+    }
+
     public static void KillCharacter(CharacterScript character)
     {
         Destroy(character.gameObject);
