@@ -44,13 +44,6 @@ public class EnemyScript : MonoBehaviour
     //    transform.position = Vector3.Lerp(transform.position, currentEndPos, Time.deltaTime * 1.0f);
     //}
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.collider.tag == "Player") {
-            CharacterScript player = collision.collider.GetComponent<CharacterScript>();
-            player.DamageCharacter(9999);
-        }
-    }
-
     public void Flip() {
         facingRight = !facingRight;
         Transform fov = transform.Find("Eyes");
