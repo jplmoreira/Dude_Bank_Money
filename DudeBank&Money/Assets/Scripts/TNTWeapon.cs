@@ -7,6 +7,7 @@ public class TNTWeapon : MonoBehaviour
     public GameObject tntThrowable;
     public float throwSpeed;
     Transform barrel;
+    Rigidbody2D tntRigid;
     // Use this for initialization
     void Start ()
     {
@@ -27,7 +28,38 @@ public class TNTWeapon : MonoBehaviour
             Vector3 mousePosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
                                                 Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
             Vector3 dir = mousePosition - barrel.position;
-            clone.GetComponent<Rigidbody2D>().AddForce(Time.deltaTime * throwSpeed * dir.normalized, ForceMode2D.Impulse);
+            tntRigid = clone.GetComponent<Rigidbody2D>();
+            tntRigid.AddForce(Time.deltaTime * throwSpeed * dir.normalized, ForceMode2D.Impulse);
+        }
+        if (tntRigid && tntRigid.velocity == Vector2.zero)
+        {
+            Debug.Log("STOPPED");
+            StartCoroutine(Explode(tntRigid.transform.position));
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (tntRigid && tntRigid.velocity == Vector2.zero)
+        {
+            Debug.Log("STOPPED");
+            Gizmos.DrawWireSphere(tntRigid.transform.position, 5.0f);
+        }
+    }
+
+    public IEnumerator Explode(Vector2 stopPos)
+    {
+        yield return new WaitForSeconds(2.0f);
+        Collider2D[] colliders;
+        colliders = Physics2D.OverlapCircleAll(stopPos,5.0f);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if(colliders[i].tag == "Enemy" || colliders[i].tag == "Player")
+            {
+                CharacterScript character = colliders[i].GetComponent<CharacterScript>();
+                character.DamageCharacter(1);
+            }
         }
     }
 }
