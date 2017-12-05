@@ -26,11 +26,22 @@ public class PlayerScript : MonoBehaviour {
 
     [HideInInspector]
     public Weapon wscript;
+    public TNTWeapon tntScript;
+
+    enum ActiveWeapon
+    {
+        GUN,
+        TNT
+    }
+
+    ActiveWeapon activeWeapon;
 
     private void Start()
     {
         wscript = GetComponentInChildren<Weapon>();
+        tntScript = GetComponentInChildren<TNTWeapon>();
         character = GetComponent<CharacterScript>();
+        activeWeapon = ActiveWeapon.GUN;
         if (character == null)
             Debug.LogError("Could not find stats");
     }
@@ -69,6 +80,22 @@ public class PlayerScript : MonoBehaviour {
                     pc2dscript.currSpeed = 15;
                 }
                 slowFactor = 0.1f / slowFactor;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (activeWeapon == ActiveWeapon.GUN)
+            {
+                activeWeapon = ActiveWeapon.TNT;
+                wscript.enabled = false;
+                tntScript.enabled = true;
+            }
+            else if (activeWeapon == ActiveWeapon.TNT)
+            {
+                activeWeapon = ActiveWeapon.GUN;
+                wscript.enabled = true;
+                tntScript.enabled = false;
             }
         }
 
