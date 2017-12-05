@@ -24,6 +24,8 @@ public class PlayerScript : MonoBehaviour {
     public PlatformerCharacter2D pc2dscript;
     public bool right;
 
+    public Knife faca;
+
     [HideInInspector]
     public Weapon wscript;
     public TNTWeapon tntScript;
@@ -40,6 +42,7 @@ public class PlayerScript : MonoBehaviour {
     {
         wscript = GetComponentInChildren<Weapon>();
         tntScript = GetComponentInChildren<TNTWeapon>();
+        faca = GetComponentInChildren<Knife>();
         character = GetComponent<CharacterScript>();
         activeWeapon = ActiveWeapon.GUN;
         if (character == null)
@@ -66,6 +69,10 @@ public class PlayerScript : MonoBehaviour {
                     pc2dscript.timeReset = true;
                 }
             }
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            faca.activateKnife();
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) {

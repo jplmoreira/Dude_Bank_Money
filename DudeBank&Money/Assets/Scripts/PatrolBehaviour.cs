@@ -37,4 +37,9 @@ public class PatrolBehaviour : MonoBehaviour
            speedX *= -1;
         }
     }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
+    }
 }

@@ -34,4 +34,9 @@ public class EnemyScript : MonoBehaviour
         fov.viewAngle = 360;
         fov.reactionTime = 2;
     }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
+    }
 }
