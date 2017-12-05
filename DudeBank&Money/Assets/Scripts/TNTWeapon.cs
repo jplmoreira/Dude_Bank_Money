@@ -8,6 +8,7 @@ public class TNTWeapon : MonoBehaviour
     public float throwSpeed;
     Transform barrel;
     Rigidbody2D tntRigid;
+    public Material explodeMaterial;
     // Use this for initialization
     void Start ()
     {
@@ -49,7 +50,9 @@ public class TNTWeapon : MonoBehaviour
 
     public IEnumerator Explode(Vector2 stopPos)
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
+        tntRigid.gameObject.GetComponent<SpriteRenderer>().material.color = Color.yellow;
+        yield return new WaitForSeconds(1.0f);
         Collider2D[] colliders;
         colliders = Physics2D.OverlapCircleAll(stopPos,5.0f);
 
