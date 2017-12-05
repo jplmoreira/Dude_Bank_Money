@@ -772,8 +772,8 @@ Transform:
   - {fileID: 1725621499}
   - {fileID: 329416697}
   - {fileID: 2061376082}
-  - {fileID: 1985015170}
   - {fileID: 987185888}
+  - {fileID: 1985015170}
   - {fileID: 1855035313}
   - {fileID: 1330126838}
   m_Father: {fileID: 1795349287}
@@ -1095,6 +1095,11 @@ Prefab:
         type: 2}
       propertyPath: pos2.x
       value: -37.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635046908267432, guid: 67f9786a59b4708409c9eca98d43c5bb,
+        type: 2}
+      propertyPath: speedX
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67f9786a59b4708409c9eca98d43c5bb, type: 2}
@@ -2303,7 +2308,7 @@ Transform:
   - {fileID: 471208716}
   - {fileID: 1874603664}
   m_Father: {fileID: 264555678}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &987185889
 BoxCollider2D:
@@ -4621,6 +4626,11 @@ Prefab:
       propertyPath: pos2.x
       value: -93.13
       objectReference: {fileID: 0}
+    - target: {fileID: 114635046908267432, guid: 67f9786a59b4708409c9eca98d43c5bb,
+        type: 2}
+      propertyPath: speedX
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67f9786a59b4708409c9eca98d43c5bb, type: 2}
   m_IsPrefabParent: 0
@@ -5509,7 +5519,7 @@ Transform:
   m_LocalScale: {x: 0.39406177, y: 0.375, z: 1}
   m_Children: []
   m_Father: {fileID: 264555678}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!251 &1985015171
 PlatformEffector2D:
@@ -5964,6 +5974,11 @@ Prefab:
         type: 2}
       propertyPath: pos2.x
       value: -93.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635046908267432, guid: 67f9786a59b4708409c9eca98d43c5bb,
+        type: 2}
+      propertyPath: speedX
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67f9786a59b4708409c9eca98d43c5bb, type: 2}

@@ -230,7 +230,7 @@ MonoBehaviour:
   pos1: {x: 0, y: 0, z: 0}
   currentEndPos: {x: 0, y: 0, z: 0}
   pos2: {x: -30.4, y: 12.98703, z: 0}
-  speedX: 0
+  speedX: 5
   itsScript: {fileID: 114057448810082706}
 --- !u!212 &212983266788855618
 SpriteRenderer:

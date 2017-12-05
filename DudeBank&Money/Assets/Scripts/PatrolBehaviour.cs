@@ -10,30 +10,31 @@ public class PatrolBehaviour : MonoBehaviour
     public float speedX;
     public EnemyScript itsScript;
 
+    private PlayerScript player;
+    private float slowDown;
+
     private void Start()
     {
+        player = GameObject.Find("Player").GetComponent<PlayerScript>();
         pos1 = transform.position;
         currentEndPos = pos2;
         speedX = 1.0f;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(speedX, GetComponent<Rigidbody2D>().velocity.y);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(speedX * player.slowFactor, GetComponent<Rigidbody2D>().velocity.y);
         if (currentEndPos == pos2 && Vector3.Distance(transform.position, pos2) < 0.1f)
         {
             currentEndPos = pos1;
             itsScript.Flip();
-            //transform.localScale = new Vector3(-1, 1, 1);
             speedX *= -1;
         }
         if (currentEndPos == pos1 && Vector3.Distance(transform.position, pos1) < 0.1f)
         {
            currentEndPos = pos2;
            itsScript.Flip();
-           //transform.localScale = new Vector3(1, 1, 1);
            speedX *= -1;
         }
-        //transform.position = Vector3.Lerp(transform.position, currentEndPos, Time.deltaTime * 1.0f);
     }
 }
