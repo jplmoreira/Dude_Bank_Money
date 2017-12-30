@@ -51,7 +51,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4085934085918854}
   - component: {fileID: 212108337658321754}
-  - component: {fileID: 58221718569919516}
   - component: {fileID: 61258259345936186}
   - component: {fileID: 50687030943808000}
   - component: {fileID: 114939747822351820}
@@ -70,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1719244711849840}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07695246, y: 13.010718, z: 0}
+  m_LocalPosition: {x: -60.659267, y: 2.986444, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4346931561943060}
@@ -85,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508500062976366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.179, y: 0.33, z: 0}
+  m_LocalPosition: {x: 0.067, y: 0.616, z: 0}
   m_LocalScale: {x: 0.5644829, y: 0.56448364, z: 1}
   m_Children: []
   m_Father: {fileID: 4085934085918854}
@@ -98,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1359081029373622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.895, y: 0.221, z: 0}
+  m_LocalPosition: {x: 0.419, y: 0.246, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4085934085918854}
@@ -124,21 +123,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58221718569919516
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1719244711849840}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.65}
-  serializedVersion: 2
-  m_Radius: 0.4
 --- !u!61 &61258259345936186
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -151,18 +135,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000059604645, y: 0.0126791}
+  m_Offset: {x: -0.15660858, y: 0.008452594}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.1111112, y: 2.0555556}
+    oldSize: {x: 0.8666667, y: 1.7}
     newSize: {x: 3.1111112, y: 2.0555556}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.70207584, y: 1.3201659}
+  m_Size: {x: 0.42728424, y: 1.6948756}
   m_EdgeRadius: 0
 --- !u!114 &114340162809298614
 MonoBehaviour:
