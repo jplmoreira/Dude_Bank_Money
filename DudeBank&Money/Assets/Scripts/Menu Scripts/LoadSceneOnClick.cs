@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 public class LoadSceneOnClick : MonoBehaviour
 {
 
-    public void LoadPrototype()
+    public void LoadLevel1()
     {
         SceneManager.LoadScene("Prototype");
     }
+
+    public void LoadLevel2()
+    {
+        SceneManager.LoadScene("Level2");
+    }
+
 }
