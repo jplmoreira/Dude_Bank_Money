@@ -22,6 +22,7 @@ namespace UnityStandardAssets._2D
 
         public float currSpeed;
 
+        public bool isDashing = false;
         public bool timeStop = false;
         public float timeStopActions;
         public bool timeReset = false;
@@ -60,8 +61,12 @@ namespace UnityStandardAssets._2D
 
             // Set the vertical animation
             //m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
-            if (m_Rigidbody2D.velocity.y < 0 && timeStop) {
+
+            /*if (m_Rigidbody2D.velocity.y < 0 && timeStop) { THIS DOESN'T LET THE PLAYER DASH DOWNWARDS DURING TIMESTOP
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
+                m_Rigidbody2D.gravityScale = 0;
+            }*/
+            if (timeStop) {
                 m_Rigidbody2D.gravityScale = 0;
             }
             if (timeReset) {
@@ -111,7 +116,9 @@ namespace UnityStandardAssets._2D
                 //m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
                 // Move the character
-                m_Rigidbody2D.velocity = new Vector2(move*currSpeed, m_Rigidbody2D.velocity.y);
+                if (!isDashing){
+                    m_Rigidbody2D.velocity = new Vector2(move * currSpeed, m_Rigidbody2D.velocity.y);
+                }
 
                 
             }

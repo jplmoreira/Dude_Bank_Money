@@ -40,6 +40,8 @@ public class PlayerScript : MonoBehaviour {
 
     private void Start()
     {
+        dashSpeed = 170;
+        dashTime = 0.025f;
         wscript = GetComponentInChildren<Weapon>();
         tntScript = GetComponentInChildren<TNTWeapon>();
         faca = GetComponentInChildren<Knife>();
@@ -117,18 +119,21 @@ public class PlayerScript : MonoBehaviour {
     private void DashReset()
     {
         dashing = false;
+        pc2dscript.isDashing = false;
+        GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
     }
 
     private void FixedUpdate()
     {
         right = pc2dscript.m_FacingRight;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !dashing)
         {
             if (pc2dscript.timeStop && pc2dscript.timeStopActions > 0)
             {
                 pc2dscript.timeStopActions--;
                 dashing = true;
+                pc2dscript.isDashing = true;
                 nextDash = Time.time + dashCooldown;
                 if (dashing)
                 {
@@ -140,6 +145,7 @@ public class PlayerScript : MonoBehaviour {
             else if (!pc2dscript.timeStop && Time.time > nextDash)
             {
                 dashing = true;
+                pc2dscript.isDashing = true;
                 nextDash = Time.time + dashCooldown;
                 if (dashing)
                 {
@@ -151,10 +157,19 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
+    
+
     private void Dash()
     {
-       
-        if (right)
+        if (pc2dscript.timeStop){
+            Vector3 mousePosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                                                Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+            Vector3 dir = mousePosition - transform.position;
+            Vector3 dashDir = dir.normalized * dashSpeed;
+            //Debug.LogError("dash direction: " + dashDir.ToString());
+            GetComponent<Rigidbody2D>().AddForce(dashDir, ForceMode2D.Impulse);
+        }
+        else if (right)
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(dashSpeed, 0), ForceMode2D.Impulse);
         }
