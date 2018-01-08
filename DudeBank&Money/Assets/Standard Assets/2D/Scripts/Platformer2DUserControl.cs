@@ -33,7 +33,22 @@ namespace UnityStandardAssets._2D
         {
             // Read the inputs.
             bool crouch = Input.GetKey(KeyCode.LeftControl);
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
+            //float h = CrossPlatformInputManager.GetAxis("Horizontal");
+
+            float h = 0.0f;
+            bool left = Input.GetKey(KeyCode.LeftArrow);
+            bool right = Input.GetKey(KeyCode.RightArrow);
+
+            if (left && !right)
+            {
+                h -= 1.0f;
+            }
+
+            if (right && !left)
+            {
+                h += 1.0f;
+            }
+
             // Pass all parameters to the character control script.
             if (m_Character.timeStop && m_Character.timeStopActions > 0)
             {

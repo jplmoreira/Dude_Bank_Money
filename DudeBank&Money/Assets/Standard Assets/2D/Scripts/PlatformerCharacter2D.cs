@@ -117,6 +117,7 @@ namespace UnityStandardAssets._2D
 
                 // Move the character
                 if (!isDashing){
+                    Debug.Log(move);
                     m_Rigidbody2D.velocity = new Vector2(move * currSpeed, m_Rigidbody2D.velocity.y);
                 }
 
