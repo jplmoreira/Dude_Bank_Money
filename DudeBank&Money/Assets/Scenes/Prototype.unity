@@ -1384,6 +1384,10 @@ Prefab:
       propertyPath: m_Name
       value: jumpplat (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1980728615390712, guid: 195ab323abd95d142bba5da1150b6146, type: 2}
+      propertyPath: m_TagString
+      value: trajectory
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 195ab323abd95d142bba5da1150b6146, type: 2}
   m_IsPrefabParent: 0
@@ -2134,6 +2138,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 0.36200115
       objectReference: {fileID: 0}
+    - target: {fileID: 1387689488794018, guid: 4de47aff90f503847b278991ed5fed50, type: 2}
+      propertyPath: m_TagString
+      value: trajectory
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4de47aff90f503847b278991ed5fed50, type: 2}
   m_IsPrefabParent: 0
@@ -2505,6 +2513,10 @@ Prefab:
     - target: {fileID: 4985351990036224, guid: 195ab323abd95d142bba5da1150b6146, type: 2}
       propertyPath: m_LocalScale.x
       value: 0.4320613
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980728615390712, guid: 195ab323abd95d142bba5da1150b6146, type: 2}
+      propertyPath: m_TagString
+      value: trajectory
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 195ab323abd95d142bba5da1150b6146, type: 2}
@@ -3066,7 +3078,7 @@ GameObject:
   - component: {fileID: 1330126839}
   m_Layer: 10
   m_Name: jumpplat (6)
-  m_TagString: Untagged
+  m_TagString: trajectory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3825,7 +3837,7 @@ GameObject:
   - component: {fileID: 1520728875}
   m_Layer: 10
   m_Name: streetwire
-  m_TagString: Untagged
+  m_TagString: trajectory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4085,6 +4097,10 @@ Prefab:
     - target: {fileID: 1980728615390712, guid: 195ab323abd95d142bba5da1150b6146, type: 2}
       propertyPath: m_Name
       value: jumpplat (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980728615390712, guid: 195ab323abd95d142bba5da1150b6146, type: 2}
+      propertyPath: m_TagString
+      value: trajectory
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 195ab323abd95d142bba5da1150b6146, type: 2}
@@ -4849,7 +4865,7 @@ GameObject:
   - component: {fileID: 1855035314}
   m_Layer: 10
   m_Name: jumpplat (4)
-  m_TagString: Untagged
+  m_TagString: trajectory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5014,6 +5030,10 @@ Prefab:
     - target: {fileID: 4985351990036224, guid: 195ab323abd95d142bba5da1150b6146, type: 2}
       propertyPath: m_LocalScale.y
       value: 0.40781337
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980728615390712, guid: 195ab323abd95d142bba5da1150b6146, type: 2}
+      propertyPath: m_TagString
+      value: trajectory
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 195ab323abd95d142bba5da1150b6146, type: 2}
@@ -5434,7 +5454,7 @@ GameObject:
   - component: {fileID: 1985015171}
   m_Layer: 10
   m_Name: jumpplat (5)
-  m_TagString: Untagged
+  m_TagString: trajectory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5646,6 +5666,10 @@ Prefab:
     - target: {fileID: 4324275869158876, guid: 4de47aff90f503847b278991ed5fed50, type: 2}
       propertyPath: m_LocalScale.x
       value: 0.28482702
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387689488794018, guid: 4de47aff90f503847b278991ed5fed50, type: 2}
+      propertyPath: m_TagString
+      value: trajectory
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4de47aff90f503847b278991ed5fed50, type: 2}

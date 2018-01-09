@@ -66,14 +66,26 @@ public class TNTWeapon : MonoBehaviour
         Vector3 velocity = initialVelocity;
 
         int i = 0;
-        Vector2 contactPoint;
-        while ((contactPoint = Physics2D.Linecast(new Vector2(lastPos.x, lastPos.y), new Vector2(position.x, position.y)).point) == Vector2.zero && i < numSteps)
+        Vector2 contactPoint = Vector2.zero;
+        RaycastHit2D hit;
+        bool getOut = false;
+        while (i < numSteps && !getOut)
         {
-            lineRenderer.SetPosition(i, position);
-            lastPos = position;
-            position += velocity * timeDelta + 0.5f * gravity * timeDelta * timeDelta;
-            velocity += gravity * timeDelta;
-            i++;
+            hit = Physics2D.Linecast(new Vector2(lastPos.x, lastPos.y), new Vector2(position.x, position.y));
+
+            if (hit.point == Vector2.zero || hit.collider.tag == "trajectory")
+            {
+                lineRenderer.SetPosition(i, position);
+                lastPos = position;
+                position += velocity * timeDelta + 0.5f * gravity * timeDelta * timeDelta;
+                velocity += gravity * timeDelta;
+                i++;
+            }
+            else
+            {
+                contactPoint = hit.point;
+                getOut = true;
+            }
         }
         if (i != numSteps)
         {
