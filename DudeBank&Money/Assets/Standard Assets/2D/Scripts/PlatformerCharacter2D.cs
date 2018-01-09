@@ -120,22 +120,37 @@ namespace UnityStandardAssets._2D
                 // Move the character
                 if (!isDashing)
                 {
-                    if (Mathf.Approximately(move, 0.0f))
+                    //if (Mathf.Approximately(move, 0.0f))
+                    //{
+                    //    m_Rigidbody2D.velocity = new Vector2(0.0f, m_Rigidbody2D.velocity.y);
+                    //}
+                    //else
+                    //{
+                    //    if (m_Grounded)
+                    //    {
+                    //        m_Rigidbody2D.AddForce(move * currSpeed * 200.0f * Time.deltaTime * Vector2.right);
+                    //    }
+                    //    else
+                    //    {
+
+                    //        m_Rigidbody2D.AddForce(move * currSpeed * 200.0f * Time.deltaTime * Vector2.right);
+                    //    }
+                    //}
+                    if (move != 0.0f)
                     {
-                        m_Rigidbody2D.velocity = new Vector2(0.0f, m_Rigidbody2D.velocity.y);
+                        if (Mathf.Abs(m_Rigidbody2D.velocity.x) < currSpeed)
+                        {
+                            m_Rigidbody2D.velocity += new Vector2(move * currSpeed * 5.0f * Time.deltaTime, 0.0f);
+                        }
+                        if (Mathf.Abs(m_Rigidbody2D.velocity.x) > currSpeed)
+                        {
+                            m_Rigidbody2D.velocity = new Vector2(move * currSpeed, m_Rigidbody2D.velocity.y);
+                        }
                     }
                     else
                     {
-                        if (m_Grounded)
-                        {
-                            m_Rigidbody2D.AddForce(move * currSpeed * 200.0f * Time.deltaTime * Vector2.right);
-                        }
-                        else
-                        {
-                            m_Rigidbody2D.AddForce(move * currSpeed * 100.0f * Time.deltaTime * Vector2.right);
-                        }
+                        m_Rigidbody2D.velocity = new Vector2(0.0f, m_Rigidbody2D.velocity.y);
                     }
-                    //m_Rigidbody2D.velocity = new Vector2(move * currSpeed, m_Rigidbody2D.velocity.y);
                 }
 
                 
