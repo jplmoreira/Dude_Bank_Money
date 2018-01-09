@@ -96,6 +96,7 @@
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\GameMaster.cs" />
     <Compile Include="Assets\Scripts\JumpPlatform.cs" />
+    <Compile Include="Assets\Scripts\Knife.cs" />
     <Compile Include="Assets\Scripts\MoveTrail.cs" />
     <Compile Include="Assets\Scripts\Other Scripts\ActiveStateToggler.cs" />
     <Compile Include="Assets\Scripts\Other Scripts\ApplicationManager.cs" />
@@ -110,8 +111,10 @@
     <Compile Include="Assets\Scripts\Other Scripts\ScrollDetailTexture.cs" />
     <Compile Include="Assets\Scripts\Other Scripts\ShowSliderValue.cs" />
     <Compile Include="Assets\Scripts\Other Scripts\TiltWindow.cs" />
+    <Compile Include="Assets\Scripts\Paralaxing.cs" />
     <Compile Include="Assets\Scripts\PatrolBehaviour.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\Tiling.cs" />
     <Compile Include="Assets\Scripts\TNTWeapon.cs" />
     <Compile Include="Assets\Scripts\TrapScr.cs" />
     <Compile Include="Assets\Scripts\UIScript.cs" />
