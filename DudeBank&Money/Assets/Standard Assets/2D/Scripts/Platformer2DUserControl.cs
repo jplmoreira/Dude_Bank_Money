@@ -36,8 +36,8 @@ namespace UnityStandardAssets._2D
             //float h = CrossPlatformInputManager.GetAxis("Horizontal");
 
             float h = 0.0f;
-            bool left = Input.GetKey(KeyCode.LeftArrow);
-            bool right = Input.GetKey(KeyCode.RightArrow);
+            bool left = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
+            bool right = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
 
             if (left && !right)
             {
