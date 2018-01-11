@@ -154,7 +154,6 @@
     <Compile Include="Assets\Editor\PatrolEditor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Additional Assets\2d-mega-pack\README.txt" />
     <None Include="Assets\AstarPathfindingEditor\Editor\EditorAssets\Materials\Navmesh.cginc" />
     <None Include="Assets\AstarPathfindingEditor\Editor\EditorAssets\Materials\Navmesh.shader" />
     <None Include="Assets\AstarPathfindingEditor\Editor\EditorAssets\Materials\NavmeshOutline.shader" />
@@ -169,7 +168,6 @@
     <None Include="Assets\Plugins\AstarPathfindingProject\Readme_upgrading.txt" />
     <None Include="Assets\Plugins\AstarPathfindingProject\link.xml" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
-    <None Include="Assets\Textures and Sprites\SF UI\Background\LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
