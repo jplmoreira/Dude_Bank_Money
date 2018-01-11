@@ -9,12 +9,14 @@ public class Knife : MonoBehaviour
     int damage = 1000;
     public PlatformerCharacter2D pc2dscript;
     public PlayerScript playerScript;
+    public GameObject player;
 
     public int rotationOffset = 0;
-
+    public Vector3 startPosition = new Vector3(0.0f, -0.15f, 0.0f);
     public float nextKnifada = 0;
     public float cooldown = 1.0f;
     public float knifeSpeed = 10.0f;
+    public bool inUse = false;
     //public bool attack = false;
 
 
@@ -22,6 +24,7 @@ public class Knife : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        player = GameObject.Find("Player");
         playerScript = GameObject.Find("Player").GetComponent<PlayerScript>();
         pc2dscript = playerScript.pc2dscript;
 
@@ -31,6 +34,7 @@ public class Knife : MonoBehaviour
     {
         if (pc2dscript.timeStop && pc2dscript.timeStopActions > 0)
         {
+            inUse = true;
             pc2dscript.timeStopActions--;
             nextKnifada = Time.time + cooldown;
 
@@ -41,11 +45,12 @@ public class Knife : MonoBehaviour
             //Debug.LogError("dash direction: " + dashDir.ToString());
             GetComponent<Rigidbody2D>().AddForce(dashDir, ForceMode2D.Impulse);
 
-            Invoke("ResetKnife", 0.5f);
+            Invoke("GoBackKnife", 0.5f);
             //attack = true;
         }
         else if (!pc2dscript.timeStop && Time.time > nextKnifada)
         {
+            inUse = true;
             nextKnifada = Time.time + cooldown;
 
             Vector3 mousePosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
@@ -55,22 +60,24 @@ public class Knife : MonoBehaviour
             //Debug.LogError("dash direction: " + dashDir.ToString());
             GetComponent<Rigidbody2D>().AddForce(dashDir, ForceMode2D.Impulse);
 
-            Invoke("ResetKnife", 0.1f);
+            Invoke("GoBackKnife", 0.1f);
 
             //attack = true;
         }
     }
 
-    public void ResetKnife()
+    public void GoBackKnife()
     {
         Vector3 comeBackVel = GetComponent<Rigidbody2D>().velocity;
         GetComponent<Rigidbody2D>().velocity = new Vector3(-comeBackVel.x, -comeBackVel.y, 0);
-        Invoke("StopKnife", 0.1f);
+        Invoke("ResetKnife", 0.1f);
     }
 
-    public void StopKnife()
+    public void ResetKnife()
     {
         GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+        GetComponent<Rigidbody2D>().position = player.GetComponent<Rigidbody2D>().position;
+        inUse = false;
         //transform.position = new Vector3(0.1f, 0.1f, 0);
     }
 
@@ -83,6 +90,25 @@ public class Knife : MonoBehaviour
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;                          // Find the angle
 
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + rotationOffset);
+        
+        
+    }
+
+    private void FixedUpdate()
+    {
+        if (!inUse)
+        {
+            //GetComponent<Rigidbody2D>().velocity = player.GetComponent<Rigidbody2D>().velocity;  ---> doesn't work well idk :/
+            GetComponent<Rigidbody2D>().position = player.GetComponent<Rigidbody2D>().position;     // bruteforce fix
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject.gameObject);
+        }
     }
 
 
