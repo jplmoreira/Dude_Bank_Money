@@ -37,9 +37,6 @@ public class Weapon : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 mousePosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                                            Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
-        UpdateTrajectory(barrel.position, (mousePosition - barrel.position) * 10.0f, new Vector3(0.0f, 0.0f, 0.0f));
         if (Input.GetButtonDown("Fire1")) {
             if (pc2dscript.timeStop && pc2dscript.timeStopActions > 0)
             {
@@ -73,39 +70,6 @@ public class Weapon : MonoBehaviour {
             float size = Random.Range(0.6f, 0.9f);
             clone.localScale = new Vector3(size, size, 0);
             Destroy(clone.gameObject, 0.02f);
-        }
-    }
-
-    void UpdateTrajectory(Vector3 initialPosition, Vector3 initialVelocity, Vector3 gravity)
-    {
-        int numSteps = 20; // for example
-        float timeDelta = 1.0f / initialVelocity.magnitude; // for example
-
-        LineRenderer lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.positionCount = numSteps;
-
-        Vector3 position = initialPosition;
-        Vector3 velocity = initialVelocity;
-        int i = 0;
-        Vector3 lastPos = position;
-
-        Vector2 contactPoint;
-        while ((contactPoint = Physics2D.Linecast(new Vector2(lastPos.x, lastPos.y), new Vector2(position.x, position.y)).point) == Vector2.zero && i < numSteps)
-        {
-            lineRenderer.SetPosition(i, position);
-            lastPos = position;
-            position += velocity * timeDelta + 0.5f * gravity * timeDelta * timeDelta;
-            velocity += gravity * timeDelta;
-            i++;
-        }
-        if (i != numSteps)
-        {
-            lineRenderer.SetPosition(i, contactPoint);
-            i++;
-            for (int j = i; j < numSteps; j++)
-            {
-                lineRenderer.SetPosition(j, lastPos);
-            }
         }
     }
 
