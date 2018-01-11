@@ -9,10 +9,17 @@ public class TNTWeapon : MonoBehaviour
     Transform barrel;
     Rigidbody2D tntRigid;
     public Material explodeMaterial;
+    private bool exploded;
+    private bool throwable;
+
+    //private GameObject instantiatedTNT;
+
     // Use this for initialization
     void Start ()
     {
         barrel = transform.Find("GunBarrel");
+        exploded = false;
+        throwable = true;
     }
 
     // Update is called once per frame
@@ -22,8 +29,9 @@ public class TNTWeapon : MonoBehaviour
                                                    Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
         Vector3 dir = mousePosition - barrel.position;
         UpdateTrajectory(barrel.position, dir.normalized * throwSpeed * Time.deltaTime, new Vector3(0.0f, -9.8f, 0.0f));
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && throwable)
         {
+            throwable = false;
             float rotation = transform.parent.rotation.eulerAngles.z;
             if (transform.parent.localScale.x < 0)
             {
@@ -36,9 +44,9 @@ public class TNTWeapon : MonoBehaviour
             tntRigid = clone.GetComponent<Rigidbody2D>();
             tntRigid.AddForce(Time.deltaTime * throwSpeed * dir.normalized, ForceMode2D.Impulse);
         }
-        if (tntRigid && tntRigid.velocity == Vector2.zero)
+        if (!exploded && tntRigid && tntRigid.velocity == Vector2.zero)
         {
-            Debug.Log("STOPPED");
+            exploded = true;
             StartCoroutine(Explode(tntRigid.transform.position));
         }
     }
@@ -47,7 +55,6 @@ public class TNTWeapon : MonoBehaviour
     {
         if (tntRigid && tntRigid.velocity == Vector2.zero)
         {
-            Debug.Log("STOPPED");
             Gizmos.DrawWireSphere(tntRigid.transform.position, 5.0f);
         }
     }
@@ -114,5 +121,10 @@ public class TNTWeapon : MonoBehaviour
                 character.DamageCharacter(1);
             }
         }
+
+        Destroy(tntRigid.gameObject);
+
+        throwable = true;
+        exploded = false;
     }
 }
