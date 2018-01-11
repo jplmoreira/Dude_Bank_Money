@@ -74,7 +74,7 @@ public class PlayerScript : MonoBehaviour {
         }
         if (Input.GetMouseButtonDown(1))
         {
-            faca.activateKnife();
+            faca.ActivateKnife();
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) {

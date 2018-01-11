@@ -11,7 +11,7 @@ public class PatrolEditor : Editor
     {
         if (mEditMode)
         {
-            if (Event.current.type == EventType.layout)
+            if (Event.current.type == EventType.Layout)
             {
                 HandleUtility.AddDefaultControl(GUIUtility.GetControlID(GetHashCode(), FocusType.Passive));
             }
