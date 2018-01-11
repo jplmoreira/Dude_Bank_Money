@@ -1387,7 +1387,7 @@ MonoBehaviour:
 
     Shoot: LMB
 
-    Change Weapon: Mousewheel
+    Weapon2: T
 
     Menu: ESC'
 --- !u!222 &938663401
