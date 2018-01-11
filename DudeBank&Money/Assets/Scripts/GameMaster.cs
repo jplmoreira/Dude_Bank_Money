@@ -64,6 +64,7 @@ public class GameMaster : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.sceneCount == 1)
         {
             SceneManager.LoadScene("Menu 3D", LoadSceneMode.Additive);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Menu 3D"));
             pc2dscript.timeStop = true;
         }
     }
