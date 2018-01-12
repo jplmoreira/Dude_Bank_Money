@@ -9,12 +9,17 @@ public class WriteScore : MonoBehaviour {
     private string score;
     private string level;
 
-	private void Start () {
-        PlayerPrefs.GetString("newScore",level);
-        if (level != "no")
+    private void Start () {
+        string level = PlayerPrefs.GetString("newScore");
+        if (level == "no")
         {
-            score = PlayerPrefs.GetFloat("Prototype").ToString("0.00");
+            textC.text = "No new Best Score";
+        }
+        else
+        { 
+            score = PlayerPrefs.GetFloat(level).ToString("0.00");
             textC.text = "New Best Score: "+score+"s !";
         }
-	}	
+        //Debug.Log(level + " - " + score + "  -  " + PlayerPrefs.GetString("newScore"));
+    }	
 }
