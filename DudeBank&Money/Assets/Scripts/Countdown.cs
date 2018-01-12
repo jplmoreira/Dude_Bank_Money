@@ -23,7 +23,7 @@ public class Countdown : MonoBehaviour {
     void Update () {
         if (alarm) {
             timeLeft -= Time.deltaTime * player.slowFactor;
-
+            
             if (timeLeft < 0) {
                 transform.GetComponent<CharacterScript>().DamageCharacter(9999);
             }
@@ -32,6 +32,7 @@ public class Countdown : MonoBehaviour {
 
     public void SoundAlarm() {
         alarm = true;
+        GetComponent<AudioSource>().Play();
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < enemies.Length; i++)
             enemies[i].GetComponent<EnemyScript>().Alarmed();

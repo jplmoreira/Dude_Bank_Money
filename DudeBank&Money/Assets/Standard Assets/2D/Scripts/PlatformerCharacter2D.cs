@@ -138,6 +138,10 @@ namespace UnityStandardAssets._2D
                     //}
                     if (move != 0.0f)
                     {
+                        if (GetComponent<AudioSource>().isPlaying == false && m_Grounded)
+                        {
+                            GetComponent<AudioSource>().Play();
+                        }
                         if (Mathf.Abs(m_Rigidbody2D.velocity.x) < currSpeed)
                         {
                             m_Rigidbody2D.velocity += new Vector2(move * currSpeed * 5.0f * Time.deltaTime, 0.0f);

@@ -20,7 +20,8 @@ public class WagonScript : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Player" && player.robbed) {
-            if(!updated) UpdateScore();
+            GetComponent<AudioSource>().Play();
+            if (!updated) UpdateScore();
             GameMaster.EndLevel();
             player.robbed = false;
             cd.alarm = false;
