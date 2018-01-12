@@ -4114,7 +4114,7 @@ Prefab:
     - target: {fileID: 82390552430785716, guid: 015e98066e3eb8b45b5f4c81c2d0a32a,
         type: 2}
       propertyPath: m_Volume
-      value: 0.38
+      value: 0.614
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 015e98066e3eb8b45b5f4c81c2d0a32a, type: 2}
@@ -4813,7 +4813,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.163
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
