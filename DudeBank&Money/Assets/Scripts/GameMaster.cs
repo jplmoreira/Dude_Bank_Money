@@ -25,7 +25,7 @@ public class GameMaster : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync("GameWon");
         }
-        SceneManager.UnloadSceneAsync("Prototype");
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }
 
     public static void EndLevel()
@@ -35,7 +35,7 @@ public class GameMaster : MonoBehaviour
     }
 
     public static void ReloadLevel() {
-        SceneManager.LoadScene("Prototype");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public static void KillCharacter(CharacterScript character)

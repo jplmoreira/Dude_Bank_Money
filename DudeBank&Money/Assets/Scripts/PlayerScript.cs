@@ -67,6 +67,7 @@ public class PlayerScript : MonoBehaviour {
                 if (slowFactor == 0){
                     resourceVal -= 50;
                     pc2dscript.timeStopActions = 5;
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 } else {
                     pc2dscript.timeReset = true;
                 }
