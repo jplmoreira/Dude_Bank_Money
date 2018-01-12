@@ -30,13 +30,14 @@ public class PlayerScript : MonoBehaviour {
     public Weapon wscript;
     public TNTWeapon tntScript;
 
-    enum ActiveWeapon
+    public enum ActiveWeapon
     {
         GUN,
-        TNT
+        TNT,
+        KNIFE
     }
 
-    ActiveWeapon activeWeapon;
+    public ActiveWeapon activeWeapon;
 
     private void Start()
     {
@@ -73,10 +74,10 @@ public class PlayerScript : MonoBehaviour {
                 }
             }
         }
-        if (Input.GetMouseButtonDown(1))
-        {
-            faca.ActivateKnife();
-        }
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    faca.ActivateKnife();
+        //}
 
         if (Input.GetKeyDown(KeyCode.Q)) {
             if (resourceVal > 0 || slowFactor == 0.1f) {
@@ -107,6 +108,21 @@ public class PlayerScript : MonoBehaviour {
                 wscript.enabled = true;
                 tntScript.enabled = false;
             }
+            else if (activeWeapon == ActiveWeapon.KNIFE)
+            {
+                activeWeapon = ActiveWeapon.GUN;
+                wscript.enabled = true;
+                tntScript.enabled = false;
+                faca.enabled = false;
+            }
+        }
+        if (Input.GetButtonDown("Fire2") && activeWeapon != ActiveWeapon.KNIFE)
+        {
+            activeWeapon = ActiveWeapon.KNIFE;
+            wscript.enabled = false;
+            tntScript.enabled = false;
+            faca.enabled = true;
+            faca.SpawnKnife();
         }
 
         if (!reset && resourceVal <= 0 && slowFactor > 0) {
@@ -122,6 +138,13 @@ public class PlayerScript : MonoBehaviour {
         dashing = false;
         pc2dscript.isDashing = false;
         GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+    }
+
+    public void RemovesKnife()
+    {
+        activeWeapon = ActiveWeapon.GUN;
+        wscript.enabled = true;
+        faca.enabled = false;
     }
 
     private void FixedUpdate()

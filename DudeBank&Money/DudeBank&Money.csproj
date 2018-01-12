@@ -96,6 +96,7 @@
     <Compile Include="Assets\Scripts\GameMaster.cs" />
     <Compile Include="Assets\Scripts\JumpPlatform.cs" />
     <Compile Include="Assets\Scripts\Knife.cs" />
+    <Compile Include="Assets\Scripts\KnifeCollision.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\ActiveStateToggler.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\ApplicationManager.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\ChangeColor.cs" />
