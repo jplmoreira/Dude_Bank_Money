@@ -26,7 +26,7 @@ public class Knife : MonoBehaviour
     private GameObject knifeInstantiated;
 
    // Use this for initialization
-   void Start()
+   void Awake()
     {
         player = GameObject.Find("Player");
         playerScript = GameObject.Find("Player").GetComponent<PlayerScript>();
@@ -84,6 +84,14 @@ public class Knife : MonoBehaviour
         //rigidbodyToMove.position = player.GetComponent<Rigidbody2D>().position;
         inUse = false;
         //transform.position = new Vector3(0.1f, 0.1f, 0);
+        Invoke("DestroyKnife", 0.1f);
+    }
+
+    public void DestroyKnife()
+    {
+        Destroy(knifeInstantiated);
+        spawned = false;
+        playerScript.RemovesKnife();
     }
 
     public void SpawnKnife()
@@ -95,25 +103,13 @@ public class Knife : MonoBehaviour
             knifeInstantiated.transform.parent = this.transform;
             knifeInstantiated.transform.localPosition = startPosition;
             rigidbodyToMove = knifeInstantiated.GetComponent<Rigidbody2D>();
+            ActivateKnife();
         }
     }
 
     private void Update()
     {
         
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position; // Get position difference between the mouse cursor and the player
-        difference.Normalize();                                                                        // Normalize the vector
-
-        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;                          // Find the angle
-
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + rotationOffset);
-        
-        if (Input.GetButtonDown("Fire2") && spawned)
-        {
-            Destroy(knifeInstantiated);
-            spawned = false;
-            playerScript.RemovesKnife();
-        }
     }
 
     private void FixedUpdate()
@@ -124,68 +120,12 @@ public class Knife : MonoBehaviour
             rigidbodyToMove.transform.localPosition = startPosition;
             //rigidbodyToMove.position = player.GetComponent<Rigidbody2D>().position;     // bruteforce fix
         }
-        if (Input.GetButtonDown("Fire1"))
-        {
-            ActivateKnife();
-        }
+        //if (Input.GetButtonDown("Fire1"))
+        //{
+        //    ActivateKnife();
+        //}
     }
 
 
-    //private void OnTriggerStay2D(Collider2D other)
-    //{
-    /*Debug.LogError("facada em: " + other.tag);
-    Destroy(other.gameObject);*/
-    /*if (other.tag == "Enemy")
-    {
-        //Kill enemy
-        Debug.LogError("facada em: " + other.tag);
-        Destroy(other.gameObject);
-        //attack = false;
-    }  
-}*/
-
-
-
-    //old way, using a raycast, wasn't working
-    /*
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (pc2dscript.timeStop && pc2dscript.timeStopActions > 0)
-            {
-                //pc2dscript.timeStopActions--;
-                nextKnifada = Time.time + cooldown;
-                attack();
-            }
-            else if (!pc2dscript.timeStop && Time.time > nextKnifada)
-            {
-                nextKnifada = Time.time + cooldown;
-                attack();
-            }
-        }
-	}
-
-    
-
-    void attack() { 
-        Vector3 dir = knife.position - transform.position;
-        Vector3 pos = transform.position + new Vector3(1, 0, 0);
-
-        RaycastHit hit;
-        if(Physics.Raycast(knife.position, dir.normalized, out hit, 5.0f))
-        {
-            pc2dscript.timeStopActions--;
-            if (hit.distance < maxDistance)
-            {
-                hit.transform.SendMessage("Die");
-            }
-        }
-        else
-        {
-            Debug.LogError("ERROR: knife position = " + knife.position.ToString() + "/n dir = " + dir.normalized.ToString());
-            Debug.DrawRay(knife.position, dir.normalized, Color.red, 10.0f, false);
-        }
-    }*/
 
 }
