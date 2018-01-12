@@ -2459,7 +2459,7 @@ GameObject:
   - component: {fileID: 1770415192}
   - component: {fileID: 1770415191}
   m_Layer: 0
-  m_Name: Mary Jane Loop
+  m_Name: MenuMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -32,7 +32,10 @@ public class Countdown : MonoBehaviour {
 
     public void SoundAlarm() {
         alarm = true;
-        GetComponent<AudioSource>().Play();
+        AudioSource[] audios = GetComponents<AudioSource>();
+        AudioSource alarmSound = audios[1];
+        if (!alarmSound.isPlaying)
+            alarmSound.Play();
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < enemies.Length; i++)
             enemies[i].GetComponent<EnemyScript>().Alarmed();
