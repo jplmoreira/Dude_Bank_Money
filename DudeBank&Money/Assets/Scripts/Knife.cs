@@ -14,7 +14,7 @@ public class Knife : MonoBehaviour
 
     public int rotationOffset = 0;
     public Vector3 startPosition = new Vector3(0.0f, -0.15f, 0.0f);
-    public float nextKnifada = 0;
+    //public float nextKnifada = 0;  unused cooldown
     public float cooldown = 1.0f;
     public float knifeSpeed;    //initialized on Start()
     public bool inUse = false;
@@ -36,38 +36,20 @@ public class Knife : MonoBehaviour
 
     public void ActivateKnife()
     {
-        if (pc2dscript.timeStop && pc2dscript.timeStopActions > 0)
-        {
-            inUse = true;
+        
+        inUse = true;
+        if (pc2dscript.timeStop) {
             pc2dscript.timeStopActions--;
-            nextKnifada = Time.time + cooldown;
-
-            Vector3 mousePosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                                                Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
-            Vector3 dir = mousePosition - transform.position;
-            Vector3 dashDir = dir.normalized * knifeSpeed;
-            //Debug.LogError("dash direction: " + dashDir.ToString());
-            rigidbodyToMove.AddForce(dashDir, ForceMode2D.Impulse);
-
-            Invoke("GoBackKnife", 0.1f);
-            //attack = true;
         }
-        else if (!pc2dscript.timeStop && Time.time > nextKnifada)
-        {
-            inUse = true;
-            nextKnifada = Time.time + cooldown;
+        //nextKnifada = Time.time + cooldown;                       no more cooldown
+        Vector3 mousePosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                                            Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+        Vector3 dir = mousePosition - transform.position;
+        Vector3 dashDir = dir.normalized * knifeSpeed;
+        //Debug.LogError("dash direction: " + dashDir.ToString());
+        rigidbodyToMove.AddForce(dashDir, ForceMode2D.Impulse);
 
-            Vector3 mousePosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                                                Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
-            Vector3 dir = mousePosition - transform.position;
-            Vector3 dashDir = dir.normalized * knifeSpeed;
-            //Debug.LogError("dash direction: " + dashDir.ToString());
-            rigidbodyToMove.AddForce(dashDir, ForceMode2D.Impulse);
-
-            Invoke("GoBackKnife", 0.1f);
-
-            //attack = true;
-        }
+        Invoke("GoBackKnife", 0.1f);        
     }
 
     public void GoBackKnife()
@@ -98,12 +80,14 @@ public class Knife : MonoBehaviour
     {
         if (!spawned)
         {
-            spawned = true;
-            knifeInstantiated = (GameObject)Instantiate(knifePrefab, startPosition, Quaternion.identity);
-            knifeInstantiated.transform.parent = this.transform;
-            knifeInstantiated.transform.localPosition = startPosition;
-            rigidbodyToMove = knifeInstantiated.GetComponent<Rigidbody2D>();
-            ActivateKnife();
+            if(!pc2dscript.timeStop || pc2dscript.timeStop && pc2dscript.timeStopActions > 0) {
+                spawned = true;
+                knifeInstantiated = (GameObject)Instantiate(knifePrefab, startPosition, Quaternion.identity);
+                knifeInstantiated.transform.parent = this.transform;
+                knifeInstantiated.transform.localPosition = startPosition;
+                rigidbodyToMove = knifeInstantiated.GetComponent<Rigidbody2D>();
+                ActivateKnife();
+            }
         }
     }
 
