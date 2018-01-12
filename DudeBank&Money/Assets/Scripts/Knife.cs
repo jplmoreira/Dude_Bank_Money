@@ -10,6 +10,7 @@ public class Knife : MonoBehaviour
     public PlatformerCharacter2D pc2dscript;
     public PlayerScript playerScript;
     public GameObject player;
+    public GameObject knifePrefab;
 
     public int rotationOffset = 0;
     public Vector3 startPosition = new Vector3(0.0f, -0.15f, 0.0f);
@@ -19,10 +20,13 @@ public class Knife : MonoBehaviour
     public bool inUse = false;
     //public bool attack = false;
 
+    public bool spawned = false;
 
+    private Rigidbody2D rigidbodyToMove;
+    private GameObject knifeInstantiated;
 
-    // Use this for initialization
-    void Start()
+   // Use this for initialization
+   void Start()
     {
         player = GameObject.Find("Player");
         playerScript = GameObject.Find("Player").GetComponent<PlayerScript>();
@@ -43,7 +47,7 @@ public class Knife : MonoBehaviour
             Vector3 dir = mousePosition - transform.position;
             Vector3 dashDir = dir.normalized * knifeSpeed;
             //Debug.LogError("dash direction: " + dashDir.ToString());
-            GetComponent<Rigidbody2D>().AddForce(dashDir, ForceMode2D.Impulse);
+            rigidbodyToMove.AddForce(dashDir, ForceMode2D.Impulse);
 
             Invoke("GoBackKnife", 0.1f);
             //attack = true;
@@ -58,7 +62,7 @@ public class Knife : MonoBehaviour
             Vector3 dir = mousePosition - transform.position;
             Vector3 dashDir = dir.normalized * knifeSpeed;
             //Debug.LogError("dash direction: " + dashDir.ToString());
-            GetComponent<Rigidbody2D>().AddForce(dashDir, ForceMode2D.Impulse);
+            rigidbodyToMove.AddForce(dashDir, ForceMode2D.Impulse);
 
             Invoke("GoBackKnife", 0.1f);
 
@@ -68,22 +72,35 @@ public class Knife : MonoBehaviour
 
     public void GoBackKnife()
     {
-        Vector3 comeBackVel = GetComponent<Rigidbody2D>().velocity;
-        GetComponent<Rigidbody2D>().velocity = new Vector3(-comeBackVel.x, -comeBackVel.y, 0);
+        Vector3 comeBackVel = rigidbodyToMove.velocity;
+        rigidbodyToMove.velocity = new Vector3(-comeBackVel.x, -comeBackVel.y, 0);
         Invoke("ResetKnife", 0.1f);
     }
 
     public void ResetKnife()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
-        GetComponent<Rigidbody2D>().position = player.GetComponent<Rigidbody2D>().position;
+        rigidbodyToMove.velocity = new Vector3(0, 0, 0);
+        rigidbodyToMove.transform.localPosition = startPosition;
+        //rigidbodyToMove.position = player.GetComponent<Rigidbody2D>().position;
         inUse = false;
         //transform.position = new Vector3(0.1f, 0.1f, 0);
     }
 
+    public void SpawnKnife()
+    {
+        if (!spawned)
+        {
+            spawned = true;
+            knifeInstantiated = (GameObject)Instantiate(knifePrefab, startPosition, Quaternion.identity);
+            knifeInstantiated.transform.parent = this.transform;
+            knifeInstantiated.transform.localPosition = startPosition;
+            rigidbodyToMove = knifeInstantiated.GetComponent<Rigidbody2D>();
+        }
+    }
 
     private void Update()
     {
+        
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position; // Get position difference between the mouse cursor and the player
         difference.Normalize();                                                                        // Normalize the vector
 
@@ -91,23 +108,25 @@ public class Knife : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + rotationOffset);
         
-        
+        if (Input.GetButtonDown("Fire2") && spawned)
+        {
+            Destroy(knifeInstantiated);
+            spawned = false;
+            playerScript.RemovesKnife();
+        }
     }
 
     private void FixedUpdate()
     {
-        if (!inUse)
+        if (!inUse && spawned)
         {
             //GetComponent<Rigidbody2D>().velocity = player.GetComponent<Rigidbody2D>().velocity;  ---> doesn't work well idk :/
-            GetComponent<Rigidbody2D>().position = player.GetComponent<Rigidbody2D>().position;     // bruteforce fix
+            rigidbodyToMove.transform.localPosition = startPosition;
+            //rigidbodyToMove.position = player.GetComponent<Rigidbody2D>().position;     // bruteforce fix
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
+        if (Input.GetButtonDown("Fire1"))
         {
-            Destroy(collision.gameObject.gameObject);
+            ActivateKnife();
         }
     }
 

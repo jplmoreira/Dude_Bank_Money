@@ -1,11 +1,15 @@
 fileFormatVersion: 2
 guid: e3189d46643e6244e8896f1afdc39ac3
-timeCreated: 1512440833
+timeCreated: 1515760360
 licenseType: Free
 MonoImporter:
-  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pc2dscript: {instanceID: 0}
+  - playerScript: {instanceID: 0}
+  - player: {instanceID: 0}
+  - knifePrefab: {fileID: 1070998639856324, guid: a34a18c240a01fb4fb7f723ea0736b3d,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
