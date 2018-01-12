@@ -8,8 +8,6 @@ public class WagonScript : MonoBehaviour {
     private PlayerScript player;
     private Countdown cd;
     private Rigidbody2D rigidBody;
-    private string level;
-    private float score;
     private bool updated;
 
     void Start () {
@@ -42,14 +40,20 @@ public class WagonScript : MonoBehaviour {
 
     private void UpdateScore()
     {
-        PlayerPrefs.SetString("newScore", "no");
+        string level;
+        float score;
         level = SceneManager.GetActiveScene().name;
-        PlayerPrefs.GetFloat(level,score);
+        score = PlayerPrefs.GetFloat(level);
         if (cd.Counter > score || score == 0)
         {
             PlayerPrefs.SetFloat(level,cd.Counter);
             PlayerPrefs.SetString("newScore", level);
         }
+        else
+        {
+            PlayerPrefs.SetString("newScore", "no");
+        }
         PlayerPrefs.Save();
+        //Debug.Log(level + " - " + PlayerPrefs.GetString("newScore"));
     }
 }
