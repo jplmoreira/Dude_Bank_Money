@@ -15,7 +15,7 @@ public class Knife : MonoBehaviour
     public Vector3 startPosition = new Vector3(0.0f, -0.15f, 0.0f);
     public float nextKnifada = 0;
     public float cooldown = 1.0f;
-    public float knifeSpeed = 10.0f;
+    public float knifeSpeed;    //initialized on Start()
     public bool inUse = false;
     //public bool attack = false;
 
@@ -27,7 +27,7 @@ public class Knife : MonoBehaviour
         player = GameObject.Find("Player");
         playerScript = GameObject.Find("Player").GetComponent<PlayerScript>();
         pc2dscript = playerScript.pc2dscript;
-
+        knifeSpeed = 20.0f;
     }
 
     public void ActivateKnife()
@@ -45,7 +45,7 @@ public class Knife : MonoBehaviour
             //Debug.LogError("dash direction: " + dashDir.ToString());
             GetComponent<Rigidbody2D>().AddForce(dashDir, ForceMode2D.Impulse);
 
-            Invoke("GoBackKnife", 0.5f);
+            Invoke("GoBackKnife", 0.1f);
             //attack = true;
         }
         else if (!pc2dscript.timeStop && Time.time > nextKnifada)
